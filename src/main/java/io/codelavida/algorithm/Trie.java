@@ -1,9 +1,16 @@
 package io.codelavida.algorithm;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.InputStreamReader;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
+import java.util.Scanner;
 
 /*
  *  Implementation of a trie data structure.
@@ -20,8 +27,11 @@ import java.util.Map;
  */
 public class Trie {
 
+    private int size = 0;
+
     private class Node {
         Map<Character, Node> children = new HashMap<>();
+        boolean isKey = false;
     }
 
     private Node root;
@@ -30,13 +40,21 @@ public class Trie {
         this.root = new Node();
     }
 
-    public void insert(final String s) {
+    public void insert(final String key) {
         Node cur = root;
-        for (char c : s.toCharArray()) {
+        for (char c : key.toCharArray()) {
             if (!cur.children.containsKey(c)) {
                 cur.children.put(c, new Node());
+                this.size++;
             }
             cur = cur.children.get(c);
+        }
+        cur.isKey = true;
+    }
+
+    public void insertAll(String[] keys) {
+        for (String k : keys) {
+            insert(k);
         }
     }
 
@@ -50,7 +68,7 @@ public class Trie {
                 cur = next;
             }
         }
-        return keysWithPrefix(key).size()==1;
+        return cur.isKey;
     }
 
     /**
@@ -74,9 +92,8 @@ public class Trie {
 
     private void collect(Node x, String pre, List<String> q) {
         // base case - node has no children (leaf node)
-        if (x.children.size() == 0) {
+        if (x.isKey) {
             q.add(pre);
-            return;
         }
         for (char c : x.children.keySet()) {
             collect(x.children.get(c), pre + c, q);
@@ -115,7 +132,42 @@ public class Trie {
      * @return size of the trie, that is number of keys
      */
     public int size() {
-        return root.children.size();
+        return this.size;
+    }
+
+
+    /*
+     * A command line auto suggester application using the
+     * trie data structure. Takes a prefix as input and
+     * prints the top 10 suggestions.
+     */
+    public static void main(String[] args) {
+        Trie dictionary = new Trie();
+        File en_words = new File(Objects.requireNonNull(Trie.class.getClassLoader().getResource("en_words_1k.txt")).getFile());
+        try {
+            BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(en_words)));
+            br.lines().forEach(dictionary::insert);
+            System.out.println("Type some letter and hit enter to see suggestions");
+            System.out.println("Type /exit to exit the program.");
+            String input;
+            Scanner scanner = new Scanner(System.in);
+            while (true) {
+                input = scanner.nextLine();
+                if (input.equalsIgnoreCase("/exit")) {
+                    System.out.println("Goodbye.");
+                    break;
+                }
+                List<String> suggestions = dictionary.keysWithPrefix(input);
+                if (suggestions.size() > 0) {
+                    suggestions.stream().limit(10).forEach(System.out::println);
+                } else {
+                    System.out.println("No suggestion.");
+                }
+            }
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 
 }

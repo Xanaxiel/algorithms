@@ -34,12 +34,10 @@ public class TrieTest {
     @Test
     public void testTrieKeys() {
         Trie trie = new Trie();
-        trie.insert("Apple");
-        trie.insert("Amazon");
-        trie.insert("Google");
-        trie.insert("Facebook");
-        trie.insert("Netflix");
-        trie.insert("Microsoft");
+        trie.insertAll(new String[]{
+                "Apple", "Amazon", "Google",
+                "Facebook", "Netflix", "Microsoft"
+        });
         List<String> keys = trie.keys();
         assertEquals(6, keys.size());
     }
