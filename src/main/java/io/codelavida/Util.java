@@ -18,12 +18,34 @@ public class Util {
         return true;
     }
 
+    public static boolean isSorted(Comparable[] arr) {
+        for (int i = 0, j = 1; i < arr.length - 1; i++, j++) {
+            if (arr[i].compareTo(arr[j]) > 0) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public static void exchange(int[] arr, int i, int j) {
+        int t = arr[i];
+        arr[i] = arr[j];
+        arr[j] = t;
+    }
+
+    public static void exchange(Comparable[] arr, int i, int j) {
+        Comparable t = arr[i];
+        arr[i] = arr[j];
+        arr[j] = t;
+    }
+
+
     private static Random generator = new java.util.Random();
 
     public static int[] getRandomArray(int length) {
         int[] arr = new int[length];
         for (int i = 0; i < length; i++) {
-            arr[i] = generator.nextInt(100);
+            arr[i] = generator.nextInt(length);
         }
         return arr;
     }
@@ -53,5 +75,22 @@ public class Util {
         return m;
     }
 
+    public static class Stopwatch {
+
+        private long start, end;
+
+        public void start() {
+            this.start = System.currentTimeMillis();
+        }
+
+        public void stop() {
+            this.end = System.currentTimeMillis();
+        }
+
+        public String duration() {
+            return String.format("%8.4f Seconds", (end - start) / 1000.0);
+        }
+
+    }
 
 }
