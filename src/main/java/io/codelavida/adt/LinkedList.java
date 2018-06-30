@@ -1,4 +1,4 @@
-package io.codelavida.algorithm;
+package io.codelavida.adt;
 
 import java.util.Iterator;
 
