@@ -45,11 +45,11 @@ public class Trie {
         for (char c : key.toCharArray()) {
             if (!cur.children.containsKey(c)) {
                 cur.children.put(c, new Node());
-                this.size++;
             }
             cur = cur.children.get(c);
         }
         cur.isKey = true;
+        this.size++;
     }
 
     public void insertAll(String[] keys) {
