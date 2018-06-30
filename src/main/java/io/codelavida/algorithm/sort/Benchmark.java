@@ -35,5 +35,11 @@ public class Benchmark {
         sw.stop();
         out.println("Quick sort     = " + sw.duration());
 
+        copy = data.clone();
+        sw.start();
+        Heap.sort(copy);
+        sw.stop();
+        out.println("Heap sort      = " + sw.duration());
+
     }
 }
