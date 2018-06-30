@@ -24,4 +24,17 @@ public class Insertion {
             arr[j] = cur;
         }
     }
+
+    public static void sort(Comparable[] arr) {
+        int n = arr.length;
+        for (int i = 1; i < n; i++) {
+            Comparable cur = arr[i];
+            int j = i;
+            while (j > 0 && cur.compareTo(arr[j - 1]) < 0) {
+                arr[j] = arr[j - 1];
+                j--;
+            }
+            arr[j] = cur;
+        }
+    }
 }

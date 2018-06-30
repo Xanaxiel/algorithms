@@ -10,10 +10,18 @@ import static org.junit.Assert.*;
 public class InsertionTest {
 
     @Test
-    public void testInsertionSort() {
+    public void testInsertionSortInts() {
         int[] data = getRandomArray(50);
         sort(data);
         assertTrue(isSorted(data));
     }
+
+    @Test
+    public void testInsertionSortStrings() {
+        String[] animals = new String[]{"Zebra", "Cat", "Tiger", "Elephant", "Lion", "Dog"};
+        sort(animals);
+        assertTrue(isSorted(animals));
+    }
+
 
 }
