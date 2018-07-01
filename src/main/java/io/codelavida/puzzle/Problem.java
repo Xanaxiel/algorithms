@@ -9,7 +9,7 @@ public interface Problem {
     }
 
     default void solve(Scanner scanner) {
-
+        System.out.println("No interactive implementation");
     }
 
     static void main(String[] args) {
@@ -23,6 +23,9 @@ public interface Problem {
                 break;
             case "SubsetSum":
                 problem = new SubsetSum();
+                break;
+            case "Celebrity":
+                problem = new Celebrity();
                 break;
             default:
                 problem = new Problem() {
