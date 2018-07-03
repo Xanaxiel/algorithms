@@ -83,12 +83,17 @@ public final class Util {
         return arr;
     }
 
-    public static int sum(int[] nums) {
-        int sum = 0;
-        for (int i = 0; i < nums.length; i++) {
-            sum += nums[i];
+    public static int sum(int[] nums, int low, int high) {
+        if (low > high) return 0;            // zero elements in the array
+        if (low == high) return nums[low];   // one element in the array
+        else {
+            int mid = (low + high) / 2;
+            return sum(nums, low, mid) + sum(nums, mid + 1, high);
         }
-        return sum;
+    }
+
+    public static int sum(int[] nums) {
+        return sum(nums, 0, nums.length - 1);
     }
 
     public static double avg(int[] nums) {

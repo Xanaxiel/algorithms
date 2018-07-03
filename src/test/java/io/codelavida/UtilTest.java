@@ -8,6 +8,12 @@ import static org.junit.Assert.*;
 public class UtilTest {
 
     @Test
+    public void testSum(){
+        assertEquals(100, sum(new int[]{12, 10, 4, 7, 67}));
+    }
+
+
+    @Test
     public void testMax() {
         assertEquals(91, max(new int[]{12, 10, 4, 7, 91}));
         assertEquals(10, max(new int[]{12, 10, 4, 7, 91}, 1, 2));
