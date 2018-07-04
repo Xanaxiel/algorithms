@@ -14,7 +14,7 @@ public interface List<E> extends Iterable<E> {
      * Returns true if the list is empty
      */
     default boolean isEmpty() {
-        return size() == 0;
+        return this.size() == 0;
     }
 
 
@@ -23,19 +23,35 @@ public interface List<E> extends Iterable<E> {
      */
     void clear();
 
+    /**
+     * get the element at index i
+     *
+     * @param i
+     * @return E element at index i
+     */
+    E get(int i);
+
+    /*
+     * Replace the element at the index i with element
+     */
+    E set(int i, E element);
+
+    /**
+     * Add element at the beginning of the list
+     *
+     * @param element to be added
+     */
+    void add(E element);
+
     /*
      * Insert an element at the index i
      */
-    void insert(int i, E element);
-
-    /*
-     * Append an element to the end of the list
-     */
-    void append(E element);
+    void add(int i, E element);
 
     /*
      * Remove an element from the end of the list
      */
-    E remove();
+    E remove(int index);
+
 
 }

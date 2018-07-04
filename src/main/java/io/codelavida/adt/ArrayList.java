@@ -8,9 +8,25 @@ import java.util.function.Consumer;
  * Array based list implementation
  */
 public class ArrayList<E> implements List<E> {
+
+    private static final int CAPACITY = 20;
+
+    private E[] data;
+
+    private int size = 0;
+
+
+    public ArrayList() {
+        this(CAPACITY);
+    }
+
+    public ArrayList(int capacity) {
+        data = (E[]) new Object[capacity];
+    }
+
     @Override
     public int size() {
-        return 0;
+        return this.size;
     }
 
     @Override
@@ -19,19 +35,56 @@ public class ArrayList<E> implements List<E> {
     }
 
     @Override
-    public void insert(int i, E element) {
-
+    public E get(int i) {
+        checkIndex(i, size);
+        return data[i];
     }
 
     @Override
-    public void append(E element) {
+    public E set(int i, E element) {
+        checkIndex(i, size);
+        E temp = data[i];
+        data[i] = element;
+        return temp;
 
+    }
+
+    private void checkIndex(int i, int n) {
+        if (i < 0 || i >= n) {
+            throw new ArrayIndexOutOfBoundsException();
+        }
     }
 
     @Override
-    public E remove() {
-        return null;
+    public void add(E element) {
+        add(0, element);
     }
+
+    @Override
+    public void add(int i, E element) {
+        checkIndex(i, size + 1);
+        if (size == data.length) {
+            throw new IllegalStateException("Array is full");
+        }
+        for (int k = size - 1; k >= 1; k--) {
+            data[k + 1] = data[k];
+        }
+        data[i] = element;
+        size++;
+    }
+
+    @Override
+    public E remove(int i) {
+        checkIndex(i, size);
+        E temp = data[i];
+        for (int k = i; k < size - 1; k++) {
+            data[k] = data[k + 1];
+        }
+        data[size - 1] = null;
+        size--;
+        return temp;
+    }
+
 
     @Override
     public Iterator<E> iterator() {
