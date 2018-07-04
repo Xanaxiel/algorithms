@@ -15,6 +15,19 @@ public class ArrayList<E> implements List<E> {
 
     private int size = 0;
 
+    /**
+     * Dynamically resize array
+     *
+     * @param capacity new capacity
+     */
+    private void resize(int capacity) {
+        E[] temp = (E[]) new Object[capacity];
+        for (int k = 0; k < size; k++) {
+            temp[k] = data[k];
+        }
+        data = temp;
+    }
+
 
     public ArrayList() {
         this(CAPACITY);
@@ -64,7 +77,7 @@ public class ArrayList<E> implements List<E> {
     public void add(int i, E element) {
         checkIndex(i, size + 1);
         if (size == data.length) {
-            throw new IllegalStateException("Array is full");
+            resize(2 * size);
         }
         for (int k = size - 1; k >= 1; k--) {
             data[k + 1] = data[k];
