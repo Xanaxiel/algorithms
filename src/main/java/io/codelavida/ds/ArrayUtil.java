@@ -3,13 +3,13 @@ package io.codelavida.ds;
 import java.util.Random;
 
 /**
- * Collection of utility functions
+ * Collection of utility functions on arrays
  */
-public final class DSUtil {
+public final class ArrayUtil {
 
     private static Random generator = new java.util.Random();
 
-    private DSUtil() {
+    private ArrayUtil() {
 
     }
 

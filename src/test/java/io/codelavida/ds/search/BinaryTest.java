@@ -2,7 +2,7 @@ package io.codelavida.ds.search;
 
 import org.junit.Test;
 
-import static io.codelavida.ds.DSUtil.getRandomArray;
+import static io.codelavida.ds.ArrayUtil.getRandomArray;
 import static io.codelavida.ds.search.Binary.search;
 import static io.codelavida.ds.sort.Insertion.sort;
 import static org.junit.Assert.*;

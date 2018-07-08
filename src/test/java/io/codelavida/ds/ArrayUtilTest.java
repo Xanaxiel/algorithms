@@ -2,10 +2,10 @@ package io.codelavida.ds;
 
 import org.junit.Test;
 
-import static io.codelavida.ds.DSUtil.*;
+import static io.codelavida.ds.ArrayUtil.*;
 import static org.junit.Assert.*;
 
-public class DSUtilTest {
+public class ArrayUtilTest {
 
     @Test
     public void testSum(){

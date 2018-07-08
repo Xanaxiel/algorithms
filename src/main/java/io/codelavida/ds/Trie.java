@@ -12,18 +12,17 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Scanner;
 
-/*
- *  Implementation of a trie data structure.
- *  Trie is also called a prefix tree is a type of N-ary tree.
- *  Tries are used typically to store strings, each node in
- *  a trie represents a prefix of a string.
- *
- *  Each node can be represented with an array of characters
- *  or as a map. The former is faster but is a terrible
- *  waste of space. The latter is a bit slower but is more
- *  efficient in space and flexible in terms that it is not
- *  restricted in terms of size of the children.
- *
+/**
+ * Implementation of a trie data structure. Trie is also called a prefix tree
+ * is a type of N-ary tree. Tries are used typically to store strings, each
+ * node in a trie represents a prefix of a string.
+ * <p>
+ * Each node can be represented with an array of characters or as a map. The
+ * former is faster but is a terrible waste of space. The latter is a bit
+ * slower but is more efficient in space and flexible in terms that it is not
+ * restricted in terms of size of the children.
+ * <p>
+ * For more information see <a href="https://en.wikipedia.org/Trie">Tries</a>
  */
 public class Trie {
 

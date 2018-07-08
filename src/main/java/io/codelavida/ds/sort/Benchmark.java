@@ -1,6 +1,6 @@
 package io.codelavida.ds.sort;
 
-import static io.codelavida.ds.DSUtil.*;
+import static io.codelavida.ds.ArrayUtil.*;
 import static java.lang.System.out;
 
 public class Benchmark {

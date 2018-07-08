@@ -1,6 +1,6 @@
 package io.codelavida.ds.sort;
 
-import static io.codelavida.ds.DSUtil.exchange;
+import static io.codelavida.ds.ArrayUtil.exchange;
 
 /**
  * Find the smallest item in the array and exchange

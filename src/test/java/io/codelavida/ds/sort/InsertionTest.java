@@ -2,8 +2,8 @@ package io.codelavida.ds.sort;
 
 import org.junit.Test;
 
-import static io.codelavida.ds.DSUtil.getRandomArray;
-import static io.codelavida.ds.DSUtil.isSorted;
+import static io.codelavida.ds.ArrayUtil.getRandomArray;
+import static io.codelavida.ds.ArrayUtil.isSorted;
 import static io.codelavida.ds.sort.Insertion.sort;
 import static org.junit.Assert.*;
 

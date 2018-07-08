@@ -1,47 +1,77 @@
 package io.codelavida.ds.list;
 
-import io.codelavida.ds.List;
 
+import java.util.Collection;
 import java.util.Iterator;
-import java.util.Spliterator;
-import java.util.function.Consumer;
+import java.util.List;
+import java.util.ListIterator;
 
-/**
- * Array based list implementation
- */
 public class ArrayList<E> implements List<E> {
 
-    private static final int CAPACITY = 20;
-
-    private E[] data;
-
-    private int size = 0;
-
-    /**
-     * Dynamically resize array
-     *
-     * @param capacity new capacity
-     */
-    private void resize(int capacity) {
-        E[] temp = (E[]) new Object[capacity];
-        for (int k = 0; k < size; k++) {
-            temp[k] = data[k];
-        }
-        data = temp;
-    }
-
-
-    public ArrayList() {
-        this(CAPACITY);
-    }
-
-    public ArrayList(int capacity) {
-        data = (E[]) new Object[capacity];
-    }
 
     @Override
     public int size() {
-        return this.size;
+        return 0;
+    }
+
+    @Override
+    public boolean isEmpty() {
+        return false;
+    }
+
+    @Override
+    public boolean contains(Object o) {
+        return false;
+    }
+
+    @Override
+    public Iterator<E> iterator() {
+        return null;
+    }
+
+    @Override
+    public Object[] toArray() {
+        return new Object[0];
+    }
+
+    @Override
+    public <T> T[] toArray(T[] a) {
+        return null;
+    }
+
+    @Override
+    public boolean add(E e) {
+        return false;
+    }
+
+    @Override
+    public boolean remove(Object o) {
+        return false;
+    }
+
+    @Override
+    public boolean containsAll(Collection<?> c) {
+        return false;
+    }
+
+    @Override
+    public boolean addAll(Collection<? extends E> c) {
+        return false;
+    }
+
+    @Override
+    public boolean addAll(int index, Collection<? extends E> c) {
+        return false;
+    }
+
+    @Override
+    public boolean removeAll(Collection<?> c) {
+        return false;
+    }
+
+    @Override
+    public boolean retainAll(Collection<?> c) {
+        return false;
     }
 
     @Override
@@ -50,69 +80,47 @@ public class ArrayList<E> implements List<E> {
     }
 
     @Override
-    public E get(int i) {
-        checkIndex(i, size);
-        return data[i];
-    }
-
-    @Override
-    public E set(int i, E element) {
-        checkIndex(i, size);
-        E temp = data[i];
-        data[i] = element;
-        return temp;
-
-    }
-
-    private void checkIndex(int i, int n) {
-        if (i < 0 || i >= n) {
-            throw new ArrayIndexOutOfBoundsException();
-        }
-    }
-
-    @Override
-    public void add(E element) {
-        add(0, element);
-    }
-
-    @Override
-    public void add(int i, E element) {
-        checkIndex(i, size + 1);
-        if (size == data.length) {
-            resize(2 * size);
-        }
-        for (int k = size - 1; k >= 1; k--) {
-            data[k + 1] = data[k];
-        }
-        data[i] = element;
-        size++;
-    }
-
-    @Override
-    public E remove(int i) {
-        checkIndex(i, size);
-        E temp = data[i];
-        for (int k = i; k < size - 1; k++) {
-            data[k] = data[k + 1];
-        }
-        data[size - 1] = null;
-        size--;
-        return temp;
-    }
-
-
-    @Override
-    public Iterator<E> iterator() {
+    public E get(int index) {
         return null;
     }
 
     @Override
-    public void forEach(Consumer<? super E> action) {
+    public E set(int index, E element) {
+        return null;
+    }
+
+    @Override
+    public void add(int index, E element) {
 
     }
 
     @Override
-    public Spliterator<E> spliterator() {
+    public E remove(int index) {
+        return null;
+    }
+
+    @Override
+    public int indexOf(Object o) {
+        return 0;
+    }
+
+    @Override
+    public int lastIndexOf(Object o) {
+        return 0;
+    }
+
+    @Override
+    public ListIterator<E> listIterator() {
+        return null;
+    }
+
+    @Override
+    public ListIterator<E> listIterator(int index) {
+        return null;
+    }
+
+    @Override
+    public List<E> subList(int fromIndex, int toIndex) {
         return null;
     }
 }
