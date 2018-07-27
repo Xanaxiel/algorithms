@@ -3,6 +3,8 @@ package io.codelavida.ds;
 import io.codelavida.ds.list.SinglyLinkedList;
 import org.junit.Test;
 
+import java.util.List;
+
 import static org.junit.Assert.*;
 
 public class SinglyLinkedListTest {
