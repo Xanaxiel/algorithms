@@ -1,4 +1,4 @@
-package io.codelavida.ds.map;
+package io.codelavida.ds;
 
 import java.util.Collection;
 import java.util.Map;
@@ -10,7 +10,7 @@ import java.util.Set;
  * @param <K> type of key in the map, must be comparable
  * @param <V> type of value in the map
  */
-public class BSTreeMap<K extends Comparable<K>, V> implements Map<K, V> {
+public class BSTMap<K extends Comparable<K>, V> implements Map<K, V> {
 
     private Node root;
 

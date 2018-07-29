@@ -1,4 +1,4 @@
-package io.codelavida.ds.list;
+package io.codelavida.ds;
 
 
 import java.util.Collection;
@@ -6,7 +6,8 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
 
-public class CircularLinkedList<E> implements List<E> {
+public class DoublyLinkedList<E> implements List<E> {
+
 
     @Override
     public int size() {

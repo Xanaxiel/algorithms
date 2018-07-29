@@ -1,4 +1,4 @@
-package io.codelavida.ds.list;
+package io.codelavida.ds;
 
 
 import java.util.Collection;
@@ -6,7 +6,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
 
-public class SinglyLinkedList<E> implements List<E> {
+public class ArrayList<E> implements List<E> {
 
 
     @Override

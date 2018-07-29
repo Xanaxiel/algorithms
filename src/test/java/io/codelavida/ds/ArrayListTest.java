@@ -1,11 +1,10 @@
 package io.codelavida.ds;
 
-import io.codelavida.ds.list.ArrayList;
 import org.junit.Test;
 
 import java.util.List;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 public class ArrayListTest {
 
@@ -32,7 +31,7 @@ public class ArrayListTest {
     }
 
     @Test
-    public void testRemoveElement(){
+    public void testRemoveElement() {
         List<Integer> list = new ArrayList<>();
         list.add(10);
         list.remove(0);
