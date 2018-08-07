@@ -1,5 +1,6 @@
 package io.codelavida.ds;
 
+import java.util.Arrays;
 import java.util.Random;
 
 import static java.lang.System.out;
@@ -331,7 +332,6 @@ public final class ArrayUtil {
 
     public static void main(String[] args) {
         sortingBenchmark();
-
     }
 
     private static void sortingBenchmark() {
@@ -369,6 +369,18 @@ public final class ArrayUtil {
         heapSort(copy);
         sw.stop();
         out.println("Heap sort      = " + sw.duration());
+
+        copy = data.clone();
+        sw.start();
+        Arrays.sort(copy);
+        sw.stop();
+        out.println("Java util's dual pivot quick sort      = " + sw.duration());
+
+        copy = data.clone();
+        sw.start();
+        Arrays.parallelSort(copy);
+        sw.stop();
+        out.println("Java util's parallel sort      = " + sw.duration());
     }
 
 }
