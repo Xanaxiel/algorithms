@@ -13,4 +13,6 @@ repositories {
 
 dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.12'
+    testCompile "com.google.truth:truth:0.42"
+    testCompile "com.google.truth.extensions:truth-java8-extension:0.42"
 }
