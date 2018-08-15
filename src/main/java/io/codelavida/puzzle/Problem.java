@@ -9,11 +9,15 @@ import java.util.Set;
 
 public interface Problem {
 
-    String name();
+    String getName();
 
-    void describe();
+    String getDescription();
 
-    void solve(Scanner scanner);
+    String getSolution();
+
+    default void demo(Scanner scanner) {
+        System.out.println("No demo available");
+    }
 
     @SuppressWarnings("unchecked")
     static void main(String[] args) {
@@ -34,7 +38,7 @@ public interface Problem {
         }
 
         while (true) {
-            problemMap.forEach((key, value) -> System.out.println(key + ":" + value.name()));
+            problemMap.forEach((key, value) -> System.out.println(key + ":" + value.getName()));
 
             System.out.println(System.lineSeparator());
 
@@ -48,9 +52,17 @@ public interface Problem {
 
             if (problem != null) {
                 System.out.println("--PROBLEM--");
-                problem.describe();
+                System.out.println(problem.getDescription());
+
                 System.out.println("--SOLUTION--");
-                problem.solve(scanner);
+                System.out.print(problem.getSolution());
+
+                System.out.println("See demo? [Enter Y or N]");
+                String answer = scanner.nextLine();
+                if ("Y".equalsIgnoreCase(answer)) {
+                    System.out.println("--DEMO--");
+                    problem.demo(scanner);
+                }
             } else {
                 System.out.println("Goodbye");
                 System.exit(0);

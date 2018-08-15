@@ -5,23 +5,19 @@ import java.util.Scanner;
 public class NQueens implements Problem {
 
     @Override
-    public String name() {
+    public String getName() {
         return "N Queens";
     }
 
     @Override
-    public void describe() {
-        System.out.println(
-                "Given an N x N board, place N queens on the board,\n" +
-                        "so that no two queens attack each other.\n"
-        );
+    public String getDescription() {
+        return "Given an N x N board, place N queens on the board,\n" +
+                "so that no two queens attack each other.";
     }
 
     @Override
-    public void solve(Scanner scanner) {
-        System.out.println("Input the number of queens");
-        int n = scanner.nextInt();
-        placeQueens(n);
+    public String getSolution() {
+       return "";
     }
 
     private static int numComparisons = 0;

@@ -5,33 +5,28 @@ import java.util.Scanner;
 public class Celebrity implements Problem {
 
     @Override
-    public String name() {
+    public String getName() {
         return "Find Celebrity";
     }
 
     @Override
-    public void describe() {
-        System.out.println(
-                "Celebrity Problem\n" +
-                        "A celebrity among a group of n people is a person\n" +
-                        "who knows nobody but is known by everybody else.\n" +
-                        "The task is to identify a celebrity by only asking\n" +
-                        "questions to people of the following form: “Do you\n" +
-                        "know this person?\n");
-
-        System.out.println(
-                "The brute force approach is to for every person, it at\n" +
-                        "least knows 1 person. The solution has O(n^2) time complexity.\n" +
-                        "A better approach is to solve it by decrease one and conquer,\n" +
-                        "for a pair of people (i, j) if i knows j then i is no longer\n" +
-                        "considered otherwise j is no longer considered as a celebrity.\n" +
-                        "Recursively solve it for the remaining people until the base\n" +
-                        "case is where two people remaining.");
+    public String getDescription() {
+        return "A celebrity among a group of n people is a person\n" +
+                "who knows nobody but is known by everybody else.\n" +
+                "The task is to identify a celebrity by only asking\n" +
+                "questions to people of the following form: “Do you\n" +
+                "know this person?\n";
     }
 
     @Override
-    public void solve(Scanner scanner) {
-
+    public String getSolution() {
+        return "The brute force approach is to for every person, it at\n" +
+                "least knows 1 person. The solution has O(n^2) time complexity.\n" +
+                "A better approach is to getSolution it by decrease one and conquer,\n" +
+                "for a pair of people (i, j) if i knows j then i is no longer\n" +
+                "considered otherwise j is no longer considered as a celebrity.\n" +
+                "Recursively getSolution it for the remaining people until the base\n" +
+                "case is where two people remaining.";
     }
 
     /**

@@ -137,7 +137,7 @@ public final class LeetCode {
     /**
      * 37. Sudoku Solver
      * <p>
-     * Write a program to solve a Sudoku puzzle by filling the empty cells.
+     * Write a program to getSolution a Sudoku puzzle by filling the empty cells.
      *
      * @param board two dimensional array of characters
      */
@@ -345,7 +345,7 @@ public final class LeetCode {
      * 23. Merge k Sorted Lists
      * <p>
      * Merge k sorted linked lists and return it as one sorted list.
-     * Analyze and describe its complexity.
+     * Analyze and getDescription its complexity.
      *
      * @param lists k sorted lists
      * @return merged list
@@ -679,7 +679,7 @@ public final class LeetCode {
      * Given an array of integers, return indices of the two number such that
      * they add up to a specific target.
      * <p>
-     * We can solve this O(n^2) time with two for loops. Another solution is to
+     * We can getSolution this O(n^2) time with two for loops. Another solution is to
      * use a hash map (additional O(n) space) to find the solution in O(n) time.
      *
      * @param nums:   array of integers

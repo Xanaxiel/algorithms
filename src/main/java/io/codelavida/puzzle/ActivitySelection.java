@@ -7,21 +7,19 @@ import java.util.Scanner;
 
 public class ActivitySelection implements Problem {
     @Override
-    public String name() {
+    public String getName() {
         return "Activity Selection";
     }
 
     @Override
-    public void describe() {
-        System.out.println(
-                "Given a set of activities and their start and finish times,\n" +
-                        "select the maximum number of non-overlapping activities.\n"
-        );
+    public String getDescription() {
+        return "Given a set of activities and their start and finish times,\n" +
+                "select the maximum number of non-overlapping activities.";
     }
 
     @Override
-    public void solve(Scanner scanner) {
-
+    public String getSolution() {
+        return "";
     }
 
     static class Activity implements Comparable<Activity> {

@@ -5,28 +5,21 @@ import java.util.Scanner;
 
 public class SubsetSum implements Problem {
     @Override
-    public String name() {
+    public String getName() {
         return "Subset Sum";
     }
 
     @Override
-    public void describe() {
-        System.out.println(
-                "Given a set of non-negative integers,\n" +
-                        "and a value sum, determine if there is a subset of the\n" +
-                        "given set with sum equal to given sum.\n" +
-                        "Solution using dynamic programming.\n"
-        );
+    public String getDescription() {
+        return "Given a set of non-negative integers,\n" +
+                "and a value sum, determine if there is a subset of the\n" +
+                "given set with sum equal to given sum.\n" +
+                "Solution using dynamic programming.";
     }
 
     @Override
-    public void solve(Scanner scanner) {
-        System.out.println("Input a list of integers separated by space");
-        String[] nums = scanner.nextLine().split("\\s+");
-        int[] data = new int[nums.length];
-        System.out.println("Input the target sum");
-        int sum = scanner.nextInt();
-        System.out.println(isSubsetSum(data, data.length, sum));
+    public String getSolution() {
+        return "";
     }
 
     public static boolean splitArraySameAverage(int[] arr) {
