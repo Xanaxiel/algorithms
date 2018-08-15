@@ -1,6 +1,13 @@
 package io.codelavida.puzzle;
 
+import java.util.Scanner;
+
 public class Celebrity implements Problem {
+
+    @Override
+    public String name() {
+        return "Find Celebrity";
+    }
 
     @Override
     public void describe() {
@@ -20,6 +27,11 @@ public class Celebrity implements Problem {
                         "considered otherwise j is no longer considered as a celebrity.\n" +
                         "Recursively solve it for the remaining people until the base\n" +
                         "case is where two people remaining.");
+    }
+
+    @Override
+    public void solve(Scanner scanner) {
+
     }
 
     /**

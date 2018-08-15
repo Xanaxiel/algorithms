@@ -5,7 +5,7 @@ package io.codelavida.ds;
  *
  * @param <E>
  */
-public interface Stack<E> {
+public interface Stack<E> extends Iterable<E> {
     /**
      * Inserts an element in to the stack.
      *

@@ -5,6 +5,11 @@ import java.util.Scanner;
 
 public class SubsetSum implements Problem {
     @Override
+    public String name() {
+        return "Subset Sum";
+    }
+
+    @Override
     public void describe() {
         System.out.println(
                 "Given a set of non-negative integers,\n" +

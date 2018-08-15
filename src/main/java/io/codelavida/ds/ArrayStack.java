@@ -1,5 +1,7 @@
 package io.codelavida.ds;
 
+import java.util.Iterator;
+
 public class ArrayStack<E> implements Stack<E> {
 
     private static final int CAPACITY = 100;
@@ -53,5 +55,10 @@ public class ArrayStack<E> implements Stack<E> {
     @Override
     public int size() {
         return top + 1;
+    }
+
+    @Override
+    public Iterator<E> iterator() {
+        return null;
     }
 }

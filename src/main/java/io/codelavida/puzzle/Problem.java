@@ -1,39 +1,45 @@
 package io.codelavida.puzzle;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
 
 public interface Problem {
 
-    default void describe() {
-        System.out.println("Please enter a valid problem name");
-    }
+    String name();
 
-    default void solve(Scanner scanner) {
-        System.out.println("No interactive implementation");
-    }
+    void describe();
+
+    void solve(Scanner scanner);
 
     static void main(String[] args) {
-        System.out.println("Enter a name of the problem");
-        Scanner scanner = new Scanner(System.in);
-        String name = scanner.nextLine();
-        Problem problem;
-        switch (name) {
-            case "ActivitySelection":
-                problem = new ActivitySelection();
-                break;
-            case "SubsetSum":
-                problem = new SubsetSum();
-                break;
-            case "Celebrity":
-                problem = new Celebrity();
-                break;
-            default:
-                problem = new Problem() {
-                };
-        }
+        Map<String, Problem> problemMap = new HashMap<>();
+        problemMap.put("AC", new ActivitySelection());
+        problemMap.put("SU", new SubsetSum());
+        problemMap.put("CE", new Celebrity());
+        problemMap.put("NQ", new NQueens());
 
-        problem.describe();
-        problem.solve(scanner);
+        while (true) {
+            problemMap.forEach((key, value) -> System.out.println(key + ":" + value.name()));
+
+            System.out.println(System.lineSeparator());
+
+            System.out.println("Enter one of the problem code from the list above");
+            System.out.println("To exit input something else");
+
+            Scanner scanner = new Scanner(System.in);
+            String code = scanner.nextLine().toUpperCase();
+
+            Problem problem = problemMap.get(code);
+
+            if (problem != null) {
+                problem.describe();
+                problem.solve(scanner);
+            } else {
+                System.out.println("Goodbye");
+                System.exit(0);
+            }
+        }
     }
 
 }

@@ -2,6 +2,8 @@ package io.codelavida.ds;
 
 import org.junit.Test;
 
+import java.util.Arrays;
+
 import static io.codelavida.ds.ArrayUtil.*;
 import static org.junit.Assert.*;
 
@@ -27,8 +29,8 @@ public class ArrayUtilTest {
 
     @Test
     public void testMedianEntire() {
-        assertEquals(17.0, median(new int[]{2, 5, 17, 21, 32}), 0.001);
-        assertEquals(19.5, median(new int[]{2, 5, 17, 22, 32, 43}), 0.001);
+        assertEquals(17.0, median(new int[]{17, 5, 2, 21, 32}), 0.001);
+        assertEquals(19.5, median(new int[]{17, 5, 2, 43, 32, 22}), 0.001);
     }
 
     @Test
@@ -71,6 +73,7 @@ public class ArrayUtilTest {
     public void testMergeSortInts() {
         int[] data = getRandomArray(50);
         mergeSort(data);
+        System.out.println(Arrays.toString(data));
         assertTrue(isSorted(data));
     }
 
@@ -93,6 +96,22 @@ public class ArrayUtilTest {
         String[] animals = new String[]{"Zebra", "Cat", "Tiger", "Elephant", "Lion", "Dog"};
         selectionSort(animals);
         assertTrue(isSorted(animals));
+    }
+
+    @Test
+    public void testKthLargestElement() {
+        int[] data = {10, 34, 2, 5, 76, 19, 48};
+        assertEquals(19, ArrayUtil.quickSelect(data, 4));
+    }
+
+    @Test
+    public void testSquareMatrix() {
+        int[][] mat = {
+                {2, 3, 4},
+                {3, 5, 6},
+                {8, 5, 7}
+        };
+        assertTrue(ArrayUtil.isSquareMatrix(mat));
     }
 
 }

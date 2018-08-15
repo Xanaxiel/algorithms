@@ -38,6 +38,7 @@ public final class ArrayUtil {
      * @param arr input array of objects
      * @return true if the array is sorted or false
      */
+    @SuppressWarnings("unchecked")
     public static boolean isSorted(Comparable[] arr) {
         for (int i = 0, j = 1; i < arr.length - 1; i++, j++) {
             if (arr[i].compareTo(arr[j]) > 0) {
@@ -47,6 +48,14 @@ public final class ArrayUtil {
         return true;
     }
 
+    public static boolean isSquareMatrix(int[][] mat) {
+        for (int[] vec : mat) {
+            if (vec.length != mat.length) {
+                return false;
+            }
+        }
+        return true;
+    }
 
     public static void exchange(int[] arr, int i, int j) {
         int t = arr[i];
@@ -60,15 +69,40 @@ public final class ArrayUtil {
         arr[j] = t;
     }
 
+    /**
+     * Given an integer array find the kth largest element. The
+     * brute force approach will take O(nlog(n)) time, as we can first
+     * sort the algorithm and then return arr[k]. A better algorithm is
+     * to use the partition method of the quicksort algorithm and recursively
+     * quickselect the first or second half of the partitioned array based
+     * on whether the partition index j < or > k.
+     *
+     * @param arr input array
+     * @param k   integer representing the kth largest element
+     * @return the kth largest element
+     */
+    public static int quickSelect(int[] arr, int k) {
+        return quickSelect(arr, k - 1, 0, arr.length - 1);
+    }
+
+    private static int quickSelect(int[] arr, int k, int low, int high) {
+        int r = partition(arr, low, high);
+        if (k < r) {
+            return quickSelect(arr, k, low, r - 1);
+        } else if (k > r) {
+            return quickSelect(arr, k, r + 1, high);
+        }
+        return arr[r];
+    }
 
     public static double median(int[] arr, int begin, int size) {
         int m = begin + (size - 1) / 2;
         // odd
         if (size % 2 == 1) {
-            return arr[m];
+            return quickSelect(arr, m + 1);
         } else {
             // even then (arr[n/2 - 1] + arr[n/2])/2.0
-            return (arr[m] + arr[m + 1]) / 2.0;
+            return (quickSelect(arr, m + 1) + quickSelect(arr, m + 2)) / 2.0;
         }
     }
 
@@ -121,9 +155,17 @@ public final class ArrayUtil {
         return max(nums, 0, nums.length);
     }
 
+    /**
+     * Sorts an array of integers in ascending order using selection sorting
+     * algorithm. The algorithm sorts the array by looping through it and in
+     * every pass i, it maintains the invariant that the array 0...i-1 is in
+     * sorted order.
+     *
+     * @param arr input array of integers to be sorted.
+     */
     public static void selectionSort(int[] arr) {
         for (int i = 0; i < arr.length; i++) {
-            for (int j = i; j < arr.length; j++) {
+            for (int j = i + 1; j < arr.length; j++) {
                 if (arr[j] < arr[i]) {
                     exchange(arr, i, j);
                 }
@@ -131,6 +173,13 @@ public final class ArrayUtil {
         }
     }
 
+    /**
+     * Sorts an array of objects using the selection sorting algorithm. The objects
+     * in the array must be comparable (by implementing the Comparable interface).
+     *
+     * @param arr input array of object to be sorted
+     */
+    @SuppressWarnings("unchecked")
     public static void selectionSort(Comparable[] arr) {
         for (int i = 0; i < arr.length; i++) {
             for (int j = i; j < arr.length; j++) {
@@ -141,10 +190,28 @@ public final class ArrayUtil {
         }
     }
 
+    /**
+     * Sorts an array of integers in the natural order using the quick sort
+     * algorithm. The quick sort algorithm uses a recursive strategy called
+     * divide and conquer. See the recursive quick sort method.
+     *
+     * @param arr input array of integers.
+     */
     public static void quickSort(int[] arr) {
         quickSort(arr, 0, arr.length - 1);
     }
 
+    /**
+     * This method recursively calls itself to first partition the array in
+     * two sub-arrays. The partition method returns the partitioned index j
+     * such that
+     * arr[i] < arr[j] for all i < j
+     * arr[k] > arr[j] for all k > j
+     *
+     * @param arr  the original array
+     * @param low  the lower index of the array to be recursively sorted
+     * @param high the higher index of the array to be recursively sorted
+     */
     private static void quickSort(int[] arr, int low, int high) {
         if (high <= low) return;
         int j = partition(arr, low, high);
@@ -155,11 +222,16 @@ public final class ArrayUtil {
     // Partition into arr[low..i-1], arr[i], arr[i+1..high].
     private static int partition(int[] arr, int low, int high) {
         int i = low, j = high + 1;
+
+        // Choose a pivot element v (first element of the array)
         int v = arr[low];
+
         while (true) {
+            // increment i as long as arr[i] < v and i < high
             while (arr[++i] < v) {
                 if (i == high) break;
             }
+            // decrement j as long as arr[j] > v and j > low
             while (arr[--j] > v) {
                 if (j == low) break;
             }
@@ -175,19 +247,27 @@ public final class ArrayUtil {
 
         int[] temp = new int[arr.length];
 
-        for (int k = low; k <= high; k++) {
-            temp[k] = arr[k];
+        if (high + 1 - low >= 0) {
+            System.arraycopy(arr, low, temp, low, high + 1 - low);
         }
 
         for (int k = low; k <= high; k++) {
-            if (i > mid)                // left half exhausted
+            // left half exhausted, copy rest of right half
+            if (i > mid) {
                 arr[k] = temp[j++];
-            else if (j > high)          // right half exhausted
+            }
+            // right half exhausted, copy rest of left half
+            else if (j > high) {
                 arr[k] = temp[i++];
-            else if (temp[j] < temp[i]) // current key on right less than current key in left
+            }
+            // current key on right less than current key in left
+            else if (temp[j] < temp[i]) {
                 arr[k] = temp[j++];
-            else                        // current key on left less than current key in right
+            }
+            // current key on left less than current key in right
+            else {
                 arr[k] = temp[i++];
+            }
         }
     }
 
@@ -226,6 +306,7 @@ public final class ArrayUtil {
         }
     }
 
+    @SuppressWarnings("unchecked")
     public static void insertonSort(Comparable[] arr) {
         int n = arr.length;
         for (int i = 1; i < n; i++) {

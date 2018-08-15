@@ -7,6 +7,11 @@ import java.util.Scanner;
 
 public class ActivitySelection implements Problem {
     @Override
+    public String name() {
+        return "Activity Selection";
+    }
+
+    @Override
     public void describe() {
         System.out.println(
                 "Given a set of activities and their start and finish times,\n" +
