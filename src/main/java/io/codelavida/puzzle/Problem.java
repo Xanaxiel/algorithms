@@ -1,8 +1,11 @@
 package io.codelavida.puzzle;
 
+import org.reflections.Reflections;
+
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
+import java.util.Set;
 
 public interface Problem {
 
@@ -12,12 +15,23 @@ public interface Problem {
 
     void solve(Scanner scanner);
 
+    @SuppressWarnings("unchecked")
     static void main(String[] args) {
         Map<String, Problem> problemMap = new HashMap<>();
-        problemMap.put("AC", new ActivitySelection());
-        problemMap.put("SU", new SubsetSum());
-        problemMap.put("CE", new Celebrity());
-        problemMap.put("NQ", new NQueens());
+
+        Package pkg = Problem.class.getPackage();
+        Reflections problemsPkg = new Reflections(pkg.getName());
+        Set<Class<? extends Problem>> problemClasses = problemsPkg.getSubTypesOf(Problem.class);
+        int i = 1;
+        for (Class c : problemClasses) {
+            String code = "P" + i++;
+            try {
+                Problem p = (Problem) c.getConstructor().newInstance();
+                problemMap.put(code, p);
+            } catch (Exception ex) {
+                System.out.println(ex.getMessage());
+            }
+        }
 
         while (true) {
             problemMap.forEach((key, value) -> System.out.println(key + ":" + value.name()));
@@ -33,7 +47,9 @@ public interface Problem {
             Problem problem = problemMap.get(code);
 
             if (problem != null) {
+                System.out.println("--PROBLEM--");
                 problem.describe();
+                System.out.println("--SOLUTION--");
                 problem.solve(scanner);
             } else {
                 System.out.println("Goodbye");
