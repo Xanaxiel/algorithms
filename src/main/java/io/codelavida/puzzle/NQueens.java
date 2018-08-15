@@ -1,7 +1,5 @@
 package io.codelavida.puzzle;
 
-import java.util.Scanner;
-
 public class NQueens implements Problem {
 
     @Override

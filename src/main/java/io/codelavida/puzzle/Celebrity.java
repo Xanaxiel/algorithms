@@ -1,7 +1,5 @@
 package io.codelavida.puzzle;
 
-import java.util.Scanner;
-
 public class Celebrity implements Problem {
 
     @Override
@@ -11,11 +9,10 @@ public class Celebrity implements Problem {
 
     @Override
     public String getDescription() {
-        return "A celebrity among a group of n people is a person\n" +
-                "who knows nobody but is known by everybody else.\n" +
-                "The task is to identify a celebrity by only asking\n" +
-                "questions to people of the following form: “Do you\n" +
-                "know this person?\n";
+        return "A celebrity among a group of n people is a person who knows \n" +
+                "nobody but is known by everybody else. The task is to identify\n" +
+                "a celebrity by only asking questions to people of the following\n" +
+                "form: “Do you know this person?";
     }
 
     @Override

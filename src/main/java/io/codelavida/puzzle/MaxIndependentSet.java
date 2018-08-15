@@ -1,7 +1,5 @@
 package io.codelavida.puzzle;
 
-import java.util.Scanner;
-
 public class MaxIndependentSet implements Problem {
 
     @Override

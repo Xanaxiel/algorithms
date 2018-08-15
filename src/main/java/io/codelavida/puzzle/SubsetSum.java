@@ -1,7 +1,6 @@
 package io.codelavida.puzzle;
 
 import java.util.Arrays;
-import java.util.Scanner;
 
 public class SubsetSum implements Problem {
     @Override
@@ -11,10 +10,8 @@ public class SubsetSum implements Problem {
 
     @Override
     public String getDescription() {
-        return "Given a set of non-negative integers,\n" +
-                "and a value sum, determine if there is a subset of the\n" +
-                "given set with sum equal to given sum.\n" +
-                "Solution using dynamic programming.";
+        return "Given a set of non-negative integers, and a value sum, determine\n" +
+                "if there is a subset of the given set with sum equal to given sum.";
     }
 
     @Override
