@@ -15,12 +15,18 @@ public class NQueens implements Problem {
 
     @Override
     public String getSolution() {
-       return "";
+        return "";
     }
 
-    private static int numComparisons = 0;
-    private static int numMethodCalls = 0;
-    private static int numSolutions = 0;
+    private int numComparisons = 0;
+    private int numMethodCalls = 0;
+    private int numSolutions = 0;
+
+    private void resetStats() {
+        numMethodCalls = 0;
+        numComparisons = 0;
+        numSolutions = 0;
+    }
 
     /**
      * Place n queens on the board of size n x n.
@@ -35,13 +41,11 @@ public class NQueens implements Problem {
      *
      * @param n integer representing the number of queens
      */
-    public static void placeQueens(int n) {
+    int placeQueens(int n) {
         if (n == 0) {
             throw new IllegalArgumentException("Board must be of size N x N");
         }
-        numMethodCalls = 0;
-        numComparisons = 0;
-        numSolutions = 0;
+        resetStats();
         System.out.println("For N = " + n);
         System.out.println("============");
         if (n > 3) {
@@ -52,9 +56,11 @@ public class NQueens implements Problem {
             System.out.println("Number of Recursive calls = " + numMethodCalls);
         }
         System.out.println("Number of numSolutions = " + numSolutions);
+
+        return numSolutions;
     }
 
-    private static void placeQueens(int[] columns, int row) {
+    private void placeQueens(int[] columns, int row) {
         numMethodCalls++;
         if (row == columns.length) {
             printSolution(columns, row);
@@ -69,7 +75,7 @@ public class NQueens implements Problem {
 
     }
 
-    private static void printSolution(int[] columns, int row) {
+    private void printSolution(int[] columns, int row) {
         numSolutions++;
         System.out.print(System.lineSeparator());
         System.out.println("Solution " + numSolutions);
@@ -95,7 +101,7 @@ public class NQueens implements Problem {
      * @return true if after placing the queen at (row, col) the board
      * is in a valid state.
      */
-    private static boolean isLegal(int[] columns, int row, int col) {
+    private boolean isLegal(int[] columns, int row, int col) {
         boolean legal = true;
         for (int i = 0; i < row; i++) {
             numComparisons++;
