@@ -6,11 +6,53 @@ import java.util.Map;
 
 /**
  * Solutions to problems on <a href=https://leetcode.com>LeetCode</a>.
+ * <p>
+ * This is the list for Amazon:
+ * [ 1, 100, 102, 155, 160, 167, 186, 199, 20, 200,
+ * 204, 206, 21, 23, 235, 239, 242, 48, 49, 5, 78,
+ * 8, 89, 98]
  */
-public final class LeetCode {
+final class LeetCode {
     private LeetCode() {
     }
 
+    /**
+     * 242. Valid Anagram
+     * Given two strings s and t , write a function to determine if t
+     * is an anagram of s.
+     * <p>
+     * You may assume the string contains only lowercase alphabets.
+     * <p>
+     * t is an anagram of s, if it is a permutation of s. One brute
+     * force approach is to sort the two strings and check for equality.
+     * The run time of this will be O(n*log(n)). Can we do better?
+     *
+     * @param s first string
+     * @param t second string
+     * @return true if t is an anagram of s otherwise false.
+     */
+    static boolean isAnagram(String s, String t) {
+        if (s == null || t == null) {
+            throw new IllegalArgumentException("Arguments must be non-null");
+        }
+        if (s.length() != t.length()) {
+            return false;
+        }
+        //Use constant space - 26 letters for the alphabet.
+        int[] counts = new int[26];
+
+        for (int i = 0; i < s.length(); i++) {
+            counts[s.charAt(i) - 'a']++;
+            counts[t.charAt(i) - 'a']--;
+        }
+        for (int count : counts) {
+            if (count != 0) {
+                return false;
+            }
+        }
+
+        return true;
+    }
 
     /**
      * 44. Wildcard Matching
@@ -22,7 +64,7 @@ public final class LeetCode {
      * @param p pattern to be matched
      * @return true if p matches entire string s
      */
-    public boolean isWildCardMatch(String s, String p) {
+    boolean isWildCardMatch(String s, String p) {
         return false;
     }
 
@@ -36,7 +78,7 @@ public final class LeetCode {
      * @param num2 string representation of second number
      * @return product of num1 and num2 represented as a string.
      */
-    public String multiply(String num1, String num2) {
+    String multiply(String num1, String num2) {
         return null;
     }
 
@@ -50,7 +92,7 @@ public final class LeetCode {
      * @param heights n non-negative integers
      * @return units of water.
      */
-    public int trap(int[] heights) {
+    int trap(int[] heights) {
         return 0;
     }
 
@@ -63,7 +105,7 @@ public final class LeetCode {
      * @param nums an unsorted array of integers.
      * @return the smallest missing number.
      */
-    public int firstMissingPositive(int[] nums) {
+    int firstMissingPositive(int[] nums) {
         return 0;
     }
 
@@ -85,7 +127,7 @@ public final class LeetCode {
      * @param target     a target number
      * @return unique combinations in candidates
      */
-    public static List<List<Integer>> combinationSum2(int[] candidates, int target) {
+    static List<List<Integer>> combinationSum2(int[] candidates, int target) {
         return null;
     }
 
@@ -103,7 +145,7 @@ public final class LeetCode {
      * @param target     a target number
      * @return unique combinations in candidates
      */
-    public static List<List<Integer>> combinationSum(int[] candidates, int target) {
+    static List<List<Integer>> combinationSum(int[] candidates, int target) {
         return null;
     }
 
@@ -130,7 +172,7 @@ public final class LeetCode {
      * @param n integer term
      * @return string representation of the nth term
      */
-    public static String countAndSay(int n) {
+    static String countAndSay(int n) {
         return null;
     }
 
@@ -141,7 +183,7 @@ public final class LeetCode {
      *
      * @param board two dimensional array of characters
      */
-    public static void solveSudoku(char[][] board) {
+    static void solveSudoku(char[][] board) {
 
     }
 
@@ -153,7 +195,7 @@ public final class LeetCode {
      * @param board two dimensional array of characters
      * @return true if the board is valid or false
      */
-    public static boolean isValidSudoku(char[][] board) {
+    static boolean isValidSudoku(char[][] board) {
         return false;
     }
 
@@ -170,7 +212,7 @@ public final class LeetCode {
      * @param target the target to search for
      * @return index of target
      */
-    public static int searchInsert(int[] nums, int target) {
+    static int searchInsert(int[] nums, int target) {
         return 0;
     }
 
@@ -186,7 +228,7 @@ public final class LeetCode {
      * @param target the target to search for
      * @return first and last index of target
      */
-    public static int[] searchRange(int[] nums, int target) {
+    static int[] searchRange(int[] nums, int target) {
         int[] indices = {-1, -1};
         return indices;
     }
@@ -206,7 +248,7 @@ public final class LeetCode {
      * @param target integer to search for in the array
      * @return index of the target if found otherwise -1
      */
-    public static int search(int[] nums, int target) {
+    static int search(int[] nums, int target) {
         return -1;
     }
 
@@ -219,7 +261,7 @@ public final class LeetCode {
      * @param s input string
      * @return length of the longest valid substring
      */
-    public static int longestValidParentheses(String s) {
+    static int longestValidParentheses(String s) {
         return 0;
 
     }
@@ -236,7 +278,7 @@ public final class LeetCode {
      *
      * @param nums array of integers.
      */
-    public static void nextPermutation(int[] nums) {
+    static void nextPermutation(int[] nums) {
 
     }
 
@@ -252,7 +294,7 @@ public final class LeetCode {
      * @param words list of words
      * @return starting indices of substrings
      */
-    public static List<Integer> findSubstring(String s, String[] words) {
+    static List<Integer> findSubstring(String s, String[] words) {
         return null;
     }
 
@@ -266,7 +308,7 @@ public final class LeetCode {
      * @param divisor  integer 32 bit signed
      * @return result of division
      */
-    public static int divide(int dividend, int divisor) {
+    static int divide(int dividend, int divisor) {
         return 0;
     }
 
@@ -280,7 +322,7 @@ public final class LeetCode {
      * @param substr substring to be found
      * @return index if found else -1
      */
-    public static int strStr(String str, String substr) {
+    static int strStr(String str, String substr) {
         return -1;
     }
 
@@ -294,7 +336,7 @@ public final class LeetCode {
      * @param val  the value to be removed
      * @return new length of the array.
      */
-    public static int removeElement(int[] nums, int val) {
+    static int removeElement(int[] nums, int val) {
         return val;
     }
 
@@ -307,7 +349,7 @@ public final class LeetCode {
      * @param nums input array
      * @return length of the array
      */
-    public static int removeDuplicates(int[] nums) {
+    static int removeDuplicates(int[] nums) {
         return nums.length;
     }
 
@@ -324,7 +366,7 @@ public final class LeetCode {
      * @param k    a positive integer
      * @return reversed list
      */
-    public static List<Object> reverseKGroup(List<Object> list, int k) {
+    static List<Object> reverseKGroup(List<Object> list, int k) {
         return null;
     }
 
@@ -337,7 +379,7 @@ public final class LeetCode {
      * @param list input list
      * @return resulting list after swapping
      */
-    public static List<Object> swapPairs(List<Object> list) {
+    static List<Object> swapPairs(List<Object> list) {
         return null;
     }
 
@@ -350,7 +392,7 @@ public final class LeetCode {
      * @param lists k sorted lists
      * @return merged list
      */
-    public static List<Object> mergeKLists(List<Object>[] lists) {
+    static List<Object> mergeKLists(List<Object>[] lists) {
         return null;
     }
 
@@ -363,7 +405,7 @@ public final class LeetCode {
      * @param n integer representing number of parentheses
      * @return all combinations of well formed parentheses
      */
-    public static List<String> generateParenthesis(int n) {
+    static List<String> generateParenthesis(int n) {
         return null;
     }
 
@@ -377,7 +419,7 @@ public final class LeetCode {
      * @param l2 second sorted list
      * @return merged list
      */
-    public static List<Object> mergeTwoLists(List<Object> l1, List<Object> l2) {
+    static List<Object> mergeTwoLists(List<Object> l1, List<Object> l2) {
         return null;
     }
 
@@ -399,7 +441,7 @@ public final class LeetCode {
      * @param s input string
      * @return true if the string s is valid
      */
-    public static boolean isValid(String s) {
+    static boolean isValid(String s) {
         return false;
     }
 
@@ -413,7 +455,7 @@ public final class LeetCode {
      * @param n    position of the node from the end
      * @return resulting list after removal of the element
      */
-    public static List<Object> removeNthFromEnd(List<Object> list, int n) {
+    static List<Object> removeNthFromEnd(List<Object> list, int n) {
         return null;
     }
 
@@ -428,7 +470,7 @@ public final class LeetCode {
      * @param target integer target
      * @return list of quadruplets
      */
-    public static List<List<Integer>> fourSum(int[] nums, int target) {
+    static List<List<Integer>> fourSum(int[] nums, int target) {
         return null;
     }
 
@@ -441,7 +483,7 @@ public final class LeetCode {
      * @param digits string of digits
      * @return all possible combinations
      */
-    public static List<String> letterCombinations(String digits) {
+    static List<String> letterCombinations(String digits) {
         return null;
 
     }
@@ -458,7 +500,7 @@ public final class LeetCode {
      * @param target integer target
      * @return sum of the three integers such that sum is closest to target
      */
-    public static int threeSumClosest(int[] nums, int target) {
+    static int threeSumClosest(int[] nums, int target) {
         return 0;
     }
 
@@ -472,7 +514,7 @@ public final class LeetCode {
      * @param nums array nums of n integers
      * @return unique triplets in the array which gives the sum of zero
      */
-    public static List<List<Integer>> threeSum(int[] nums) {
+    static List<List<Integer>> threeSum(int[] nums) {
         return null;
     }
 
@@ -486,7 +528,7 @@ public final class LeetCode {
      * @param strs array of strings
      * @return longest common prefix string
      */
-    public static String longestCommonPrefix(String[] strs) {
+    static String longestCommonPrefix(String[] strs) {
 
         return null;
     }
@@ -500,7 +542,7 @@ public final class LeetCode {
      * @param s roman numeral
      * @return integer
      */
-    public static int romanToInt(String s) {
+    static int romanToInt(String s) {
         return 0;
 
     }
@@ -514,7 +556,7 @@ public final class LeetCode {
      * @param num input integer
      * @return roman number of num
      */
-    public static String intToRoman(int num) {
+    static String intToRoman(int num) {
         return null;
 
     }
@@ -531,7 +573,7 @@ public final class LeetCode {
      * @param heights array of integers
      * @return maximum area
      */
-    public static int maxArea(int[] heights) {
+    static int maxArea(int[] heights) {
         return 0;
     }
 
@@ -546,7 +588,7 @@ public final class LeetCode {
      *          and characters like . or *.
      * @return true if matching covers the entire input string (not partial).
      */
-    public boolean isMatch(String s, String p) {
+    boolean isMatch(String s, String p) {
         return false;
     }
 
@@ -559,7 +601,7 @@ public final class LeetCode {
      * @param x integer
      * @return true if x is palindrome otherwise false
      */
-    public static boolean isPalindrome(int x) {
+    static boolean isPalindrome(int x) {
         return false;
     }
 
@@ -571,7 +613,7 @@ public final class LeetCode {
      * @param str alphanumeric string with optional whitespaces.
      * @return find the number as long as a non-digit is found.
      */
-    public static int myAtoi(String str) {
+    static int myAtoi(String str) {
         return 0;
     }
 
@@ -583,7 +625,7 @@ public final class LeetCode {
      * @param x integer to be reversed
      * @return reversed integer
      */
-    public static int reverse(int x) {
+    static int reverse(int x) {
         return 0;
     }
 
@@ -604,7 +646,7 @@ public final class LeetCode {
      * @param numRows number of rows
      * @return string after the conversion
      */
-    public static String convert(String s, int numRows) {
+    static String convert(String s, int numRows) {
         return null;
     }
 
@@ -617,7 +659,7 @@ public final class LeetCode {
      * @param s input string
      * @return longest substring in s that is palindromic
      */
-    public static String longestPalindrome(String s) {
+    static String longestPalindrome(String s) {
         return null;
     }
 
@@ -632,7 +674,7 @@ public final class LeetCode {
      * @param nums2 second sorted array
      * @return median of the two sorted arrays.
      */
-    public static double findMedianSortedArrays(int[] nums1, int[] nums2) {
+    static double findMedianSortedArrays(int[] nums1, int[] nums2) {
 
         return 0.0;
     }
@@ -646,7 +688,7 @@ public final class LeetCode {
      * @param s input string
      * @return integer representing length of the longest substring.
      */
-    public static int lengthOfLongestSubstring(String s) {
+    static int lengthOfLongestSubstring(String s) {
 
         return 0;
     }
@@ -665,7 +707,7 @@ public final class LeetCode {
      * @param l2 linked list representing the first number in reverse
      * @return sum of the two numbers as a linked list in reverse
      */
-    public static List<Integer> addTwoNumbers(List<Integer> l1, List<Integer> l2) {
+    static List<Integer> addTwoNumbers(List<Integer> l1, List<Integer> l2) {
         List<Integer> sum = null;
 
 
@@ -685,7 +727,7 @@ public final class LeetCode {
      * @param nums:   array of integers
      * @param target: integer that is the sum of two numbers in the array.
      */
-    public static int[] twoSum(int[] nums, int target) {
+    static int[] twoSum(int[] nums, int target) {
         if (nums == null || nums.length < 2) {
             throw new IllegalArgumentException(
                     "Null or invalid length array");

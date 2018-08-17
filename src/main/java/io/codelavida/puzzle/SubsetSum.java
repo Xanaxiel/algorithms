@@ -19,7 +19,7 @@ public class SubsetSum implements Problem {
         return "";
     }
 
-    public static boolean splitArraySameAverage(int[] arr) {
+    static boolean splitArraySameAverage(int[] arr) {
         int n = arr.length;
         int sum = Arrays.stream(arr).sum();
         for (int i = 1; i <= n / 2; ++i) {
@@ -30,7 +30,7 @@ public class SubsetSum implements Problem {
         return false;
     }
 
-    public static boolean isSubsetSum(int[] arr, int n, int sum) {
+    static boolean isSubsetSum(int[] arr, int n, int sum) {
         //base cases
         if (sum == 0) return true;
         if (n == 0) return false;
