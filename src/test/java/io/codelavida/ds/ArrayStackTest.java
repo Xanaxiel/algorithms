@@ -39,4 +39,13 @@ public class ArrayStackTest {
         assertEquals(Integer.valueOf(100), e);
         assertTrue(stack.isEmpty());
     }
+
+    @Test
+    public void testStackTop() {
+        Stack<Integer> stack = new ArrayStack<>(10);
+        stack.push(100);
+        Integer e = stack.top();
+        assertEquals(Integer.valueOf(100), e);
+        assertFalse(stack.isEmpty());
+    }
 }
