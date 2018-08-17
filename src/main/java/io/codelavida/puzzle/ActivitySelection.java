@@ -21,23 +21,25 @@ public class ActivitySelection implements Problem {
         return "";
     }
 
+    /**
+     * Note: this class has a natural ordering that is inconsistent with equals.
+     */
+
     static class Activity implements Comparable<Activity> {
         private int activityId;
-        private int start;
         private int finish;
 
-        Activity(int activityId, int start, int finish) {
+        Activity(int activityId, int finish) {
             this.activityId = activityId;
-            this.start = start;
             this.finish = finish;
         }
 
         @Override
-        public int compareTo(Activity o) {
-            return this.finish - o.finish;
+        public int compareTo(Activity otherActivity) {
+            return this.finish - otherActivity.finish;
         }
 
-        public int getActivityId() {
+        int getActivityId() {
             return activityId;
         }
     }
@@ -45,7 +47,7 @@ public class ActivitySelection implements Problem {
     /**
      * @param activities list of activities
      */
-    public static List<Activity> activitySelection(List<Activity> activities) {
+    static List<Activity> activitySelection(List<Activity> activities) {
         Collections.sort(activities);
         List<Activity> result = new LinkedList<>();
         result.add(activities.get(0));

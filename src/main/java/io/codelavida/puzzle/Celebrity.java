@@ -31,7 +31,7 @@ public class Celebrity implements Problem {
      *              and false otherwise
      * @return the id of the celebrity.
      */
-    public static int findCelebrity(boolean[][] knows) {
+    static int findCelebrity(boolean[][] knows) {
         int n = knows[0].length;
         return findCelebrityRecur(0, 1, n, knows);
     }

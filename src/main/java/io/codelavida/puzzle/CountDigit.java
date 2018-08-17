@@ -1,7 +1,7 @@
 package io.codelavida.puzzle;
 
 
-public class CountDigit {
+class CountDigit {
 
     /**
      * Given an integer X within the range of 0 to 9, and given
@@ -16,7 +16,7 @@ public class CountDigit {
      * @return number of times x appears as a digit in a number between
      * low and high (exclusive)
      */
-    public static int numDigitX(int x, int low, int high) {
+    static int numDigitX(int x, int low, int high) {
         int count = 0;
         for (int i = low + 1; i < high; i++) {
             int j = i;
