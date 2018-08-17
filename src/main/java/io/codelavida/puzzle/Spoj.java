@@ -1,6 +1,6 @@
 package io.codelavida.puzzle;
 
-public final class Spoj {
+final class Spoj {
     private Spoj() {
     }
 
@@ -14,7 +14,7 @@ public final class Spoj {
      * @param b second integer
      * @return number of zeroes in the digits.
      */
-    public static int zerosInRange(int a, int b) {
+    static int zerosInRange(int a, int b) {
         if (a > b) {
             throw new IllegalArgumentException("a must be smaller or equal to b");
         }

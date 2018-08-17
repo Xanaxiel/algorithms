@@ -1,13 +1,10 @@
 package io.codelavida.puzzle;
 
 /**
- * Solutions to problems on <a href="https://projecteuler.net">Project
- * Euler</a>
+ * Solutions to problems on https://projecteuler.net/archives
  */
-public final class ProjectEuler {
+final class ProjectEuler {
     private ProjectEuler() {
     }
-
-
 
 }
