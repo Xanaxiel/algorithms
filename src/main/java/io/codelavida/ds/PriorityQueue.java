@@ -39,7 +39,8 @@ public class PriorityQueue<E> extends AbstractQueue<E>
         this(comparator, DEFAULT_INITIAL_CAPACITY);
     }
 
-    public PriorityQueue(Comparator<? extends E> comparator, int initialCapacity) {
+    public PriorityQueue(Comparator<? extends E> comparator,
+                         int initialCapacity) {
         this.comparator = comparator;
         queue = new Object[initialCapacity];
     }

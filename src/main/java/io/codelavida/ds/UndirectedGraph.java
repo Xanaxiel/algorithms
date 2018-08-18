@@ -1,4 +1,4 @@
-package io.codelavida.ds.graph;
+package io.codelavida.ds;
 
 import java.util.Set;
 
@@ -6,9 +6,6 @@ import java.util.Set;
  * Implementation of an undirected graph using adjacency list of vertices.
  */
 public class UndirectedGraph<V> implements Graph<V> {
-
-
-
     @Override
     public Set<V> vertices() {
         return null;

@@ -142,11 +142,14 @@ public class Trie {
      */
     public static void main(String[] args) {
         Trie dictionary = new Trie();
-        File en_words = new File(Objects.requireNonNull(Trie.class.getClassLoader().getResource("en_words_1k.txt")).getFile());
+        File en_words = new File(Objects.requireNonNull(Trie.class
+                .getClassLoader().getResource("en_words_1k.txt")).getFile());
         try {
-            BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(en_words)));
+            BufferedReader br = new BufferedReader(new InputStreamReader(
+                    new FileInputStream(en_words)));
             br.lines().forEach(dictionary::insert);
-            System.out.println("Type some letter and hit enter to see suggestions");
+            System.out.println("Type some letter and hit enter to see " +
+                    "suggestions");
             System.out.println("Type /exit to exit the program.");
             String input;
             Scanner scanner = new Scanner(System.in);
@@ -158,7 +161,8 @@ public class Trie {
                 }
                 List<String> suggestions = dictionary.keysWithPrefix(input);
                 if (suggestions.size() > 0) {
-                    suggestions.stream().limit(10).forEach(System.out::println);
+                    suggestions.stream().limit(10).forEach(
+                            System.out::println);
                 } else {
                     System.out.println("No suggestion.");
                 }

@@ -1,9 +1,9 @@
-package io.codelavida.ds.graph;
+package io.codelavida.ds;
 
 import java.util.Set;
 
 /**
- * An interface to Graph data structures.
+ * An ADT for the Graph data structures represented using an interface.
  * <p>
  * A graph is a pair of sets (V, E), where V is a set of vertices and E is a set
  * of edges where each edge is a pair of vertices that represents a connection
@@ -33,7 +33,8 @@ public interface Graph<V> {
 
 
     /**
-     * @param vertex reference to the vertex whose adjacent vertices to be determined.
+     * @param vertex reference to the vertex whose adjacent vertices to be
+     *               determined.
      * @return set of vertices that are adjacent to vertex
      */
     Set<V> adjacentVertices(V vertex);

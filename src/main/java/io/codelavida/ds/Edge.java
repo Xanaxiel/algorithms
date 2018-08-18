@@ -1,11 +1,17 @@
-package io.codelavida.ds.graph;
+package io.codelavida.ds;
 
 /**
- * Represents an edge that connects a pair of vertices in a graph
+ * Represents an edge that connects a pair of vertices in a graph.
+ *
+ * <ul>
+ *     <li>
+ *
+ *     </li>
+ * </ul>
  *
  * @param <V> type parameter of the vertex
  */
-public class Edge<V> {
+class Edge<V> {
 
     private V predecessor;
     private V successor;

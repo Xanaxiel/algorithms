@@ -1,7 +1,8 @@
-package io.codelavida.ds.graph;
+package io.codelavida.ds;
 
 /**
- * Utility class with static methods to operate on the {@link Graph} data structure.
+ * Utility class with static methods to operate on the {@link Graph} data
+ * structure.
  */
 public final class Graphs {
 
