@@ -13,7 +13,7 @@ public class ArrayList<E> implements List<E> {
     private int numElements;
     private E[] data;
 
-    public ArrayList() {
+    ArrayList() {
         data = (E[]) new Object[CAPACITY];
     }
 
@@ -24,7 +24,7 @@ public class ArrayList<E> implements List<E> {
 
     @Override
     public boolean isEmpty() {
-        return false;
+        return size() == 0;
     }
 
     @Override
