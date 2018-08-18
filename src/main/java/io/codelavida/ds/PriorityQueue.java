@@ -2,71 +2,59 @@ package io.codelavida.ds;
 
 
 import java.io.Serializable;
-import java.util.AbstractQueue;
-import java.util.Comparator;
-import java.util.Iterator;
 
 /**
+ * An ADT for priority queue.
+ * <p>
  * A priority queue maintains a partial ordering of its elements such that
- * the least element is found in constant time. The operations to push and
- * pop an element from the queue is logarithmic while removing an element is
- * linear
+ * the prioritised element is found in constant time. The operations to
+ * push and pop an element from the queue is logarithmic while removing an
+ * element is linear.
+ * <p>
+ * The implementations allow elements with same priority. When calling min()
+ * or removeMin() in such cases the specific entry to be returned can be
+ * arbitrary.
  *
- * @param <E> Type parameter of the element in the priority queue.
+ * @param <K> The key representing the priority of the element to be added
+ * @param <V> The value which can be the actual element
  */
-public class PriorityQueue<E> extends AbstractQueue<E>
-        implements Serializable {
-
-    private static final long serialVersionUID = -4749305057305804111L;
-
-    private static final int DEFAULT_INITIAL_CAPACITY = 10;
+public interface PriorityQueue<K, V> extends Serializable {
 
     /**
-     * Priority queue represented as a balanced binary heap
-     * two children of queue[n] are queue[2*n+1] and queue[2*n+2].
+     * Creates an entry with key and value in the priority queue.
+     *
+     * @param key   the key of the entry to be added.
+     * @param value the value of the entry to be added.
+     * @return Entry: an entry object
      */
-    transient Object[] queue;
+    Entry<K, V> insert(K key, V value);
 
-    private final Comparator<? extends E> comparator;
+    /**
+     * Returns the entry that has the lease priority
+     *
+     * @return the entry with the lease priority.
+     */
+    Entry<K, V> min();
 
-    int size;
+    /**
+     * Similar to min but also removes the entry from the priority queue.
+     *
+     * @return the entry with lease priority
+     */
+    Entry<K, V> removeMin();
 
-    public PriorityQueue() {
-        this(null, DEFAULT_INITIAL_CAPACITY);
-    }
+    /**
+     * Finds the number of entries in the priority queue.
+     *
+     * @return integer representing the number of elements in the queue.
+     */
+    int size();
 
-    public PriorityQueue(Comparator<? extends E> comparator) {
-        this(comparator, DEFAULT_INITIAL_CAPACITY);
-    }
+    /**
+     * Checks if the priority queue is empty or not.
+     *
+     * @return {@code true} if the queue is empty otherwise returns false.
+     */
+    boolean isEmpty();
 
-    public PriorityQueue(Comparator<? extends E> comparator,
-                         int initialCapacity) {
-        this.comparator = comparator;
-        queue = new Object[initialCapacity];
-    }
-
-    @Override
-    public Iterator<E> iterator() {
-        return null;
-    }
-
-    @Override
-    public int size() {
-        return 0;
-    }
-
-    @Override
-    public boolean offer(E e) {
-        return false;
-    }
-
-    @Override
-    public E poll() {
-        return null;
-    }
-
-    @Override
-    public E peek() {
-        return null;
-    }
 }
