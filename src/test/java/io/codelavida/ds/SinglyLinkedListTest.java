@@ -1,36 +1,53 @@
 package io.codelavida.ds;
 
+
 import org.junit.Test;
 
-import java.util.List;
-
-import static org.junit.Assert.*;
+import static junit.framework.TestCase.assertEquals;
+import static junit.framework.TestCase.assertTrue;
+import static org.junit.Assert.assertFalse;
 
 public class SinglyLinkedListTest {
 
     @Test
     public void testCreateEmptyList() {
-        List<Integer> list = new SinglyLinkedList<>();
+        SinglyLinkedList<Integer> list = new SinglyLinkedList<>();
         assertTrue(list.isEmpty());
     }
 
     @Test
     public void testAddElement() {
-        List<Integer> list = new SinglyLinkedList<>();
+        SinglyLinkedList<Integer> list = new SinglyLinkedList<>();
         list.add(10);
         assertEquals(1, list.size());
+        assertEquals(Integer.valueOf(10), list.get(0));
     }
 
     @Test
-    public void testGetElement() {
-        List<Integer> list = new SinglyLinkedList<>();
+    public void testGetElementByValidIndex() {
+        SinglyLinkedList<Integer> list = new SinglyLinkedList<>();
         list.add(100);
         assertEquals(Integer.valueOf(100), list.get(0));
     }
 
+    @Test(expected = IndexOutOfBoundsException.class)
+    public void testGetElementByInvalidIndex() {
+        SinglyLinkedList<Integer> list = new SinglyLinkedList<>();
+        list.add(100);
+        list.get(2);
+    }
+
+    @Test
+    public void testSearchExistingElement() {
+        SinglyLinkedList<Integer> list = new SinglyLinkedList<>();
+        list.add(100);
+        assertTrue(list.contains(100));
+        assertFalse(list.contains(200));
+    }
+
     @Test
     public void testRemoveElement() {
-        List<Integer> list = new SinglyLinkedList<>();
+        SinglyLinkedList<Integer> list = new SinglyLinkedList<>();
         list.add(100);
         list.add(200);
         list.add(300);
