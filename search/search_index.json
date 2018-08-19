@@ -2,23 +2,18 @@
     "docs": [
         {
             "location": "/",
-            "text": "Welcome to MkDocs\n\n\nFor full documentation visit \nmkdocs.org\n.\n\n\nCommands\n\n\n\n\nmkdocs new [dir-name]\n - Create a new project.\n\n\nmkdocs serve\n - Start the live-reloading docs server.\n\n\nmkdocs build\n - Build the documentation site.\n\n\nmkdocs help\n - Print this help message.\n\n\n\n\nProject layout\n\n\nmkdocs.yml    # The configuration file.\ndocs/\n    index.md  # The documentation homepage.\n    ...       # Other markdown pages, images and other files.",
-            "title": "Welcome to MkDocs"
+            "text": "Algorithms\n\n\nWelcome! This repository is a collection of algorithmic resources. The sole \npurpose is to learn the fundamental principles of abstractions and how to \napply some of the design paradigms in solving real-world problems. The \nrepository is full of code samples and links to online resource.\n\n\n\n\n\n\nEverything in this repository is mentioned somewhere else and efforts have \nbeen made to credit those.  \n\n\n\n\n\n\nSections\n\n\nTBA",
+            "title": "Algorithms"
         },
         {
-            "location": "/#welcome-to-mkdocs",
-            "text": "For full documentation visit  mkdocs.org .",
-            "title": "Welcome to MkDocs"
+            "location": "/#algorithms",
+            "text": "Welcome! This repository is a collection of algorithmic resources. The sole \npurpose is to learn the fundamental principles of abstractions and how to \napply some of the design paradigms in solving real-world problems. The \nrepository is full of code samples and links to online resource.    Everything in this repository is mentioned somewhere else and efforts have \nbeen made to credit those.",
+            "title": "Algorithms"
         },
         {
-            "location": "/#commands",
-            "text": "mkdocs new [dir-name]  - Create a new project.  mkdocs serve  - Start the live-reloading docs server.  mkdocs build  - Build the documentation site.  mkdocs help  - Print this help message.",
-            "title": "Commands"
-        },
-        {
-            "location": "/#project-layout",
-            "text": "mkdocs.yml    # The configuration file.\ndocs/\n    index.md  # The documentation homepage.\n    ...       # Other markdown pages, images and other files.",
-            "title": "Project layout"
+            "location": "/#sections",
+            "text": "TBA",
+            "title": "Sections"
         }
     ]
 }
