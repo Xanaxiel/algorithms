@@ -4,6 +4,9 @@ import org.junit.Test;
 
 import static com.google.common.truth.Truth.assertThat;
 
+import static io.codelavida.puzzle.LeetCode.TreeNode;
+import static io.codelavida.puzzle.LeetCode.isSameTree;
+
 
 public class LeetCodeTest {
 
@@ -24,6 +27,36 @@ public class LeetCodeTest {
     @Test(expected = IllegalArgumentException.class)
     public void testIsAnagramNullArgument() {
         LeetCode.isAnagram(null, "");
+    }
+
+    @Test
+    public void testIsSameTree() {
+        TreeNode tn1 = new TreeNode(10,
+                new TreeNode(20,
+                        new TreeNode(15, null, null),
+                        new TreeNode(22, null, null)),
+                new TreeNode(30,
+                        new TreeNode(25, null, null),
+                        new TreeNode(32, null, null)));
+
+        TreeNode tn2 = new TreeNode(10,
+                new TreeNode(20,
+                        new TreeNode(15, null, null),
+                        new TreeNode(22, null, null)),
+                new TreeNode(30,
+                        new TreeNode(15, null, null),
+                        new TreeNode(22, null, null)));
+
+        TreeNode tn3 = new TreeNode(10,
+                new TreeNode(20,
+                        new TreeNode(15, null, null),
+                        new TreeNode(22, null, null)),
+                new TreeNode(30,
+                        new TreeNode(15, null, null),
+                        new TreeNode(22, null, null)));
+
+        assertThat(isSameTree(tn1, tn2)).isFalse();
+        assertThat(isSameTree(tn2, tn3)).isTrue();
     }
 
 }

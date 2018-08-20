@@ -1,5 +1,9 @@
 package io.codelavida.puzzle;
 
+import io.codelavida.ds.SinglyLinkedList;
+
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -8,13 +12,14 @@ import java.util.Map;
  * Solutions to problems on <a href=https://leetcode.com>LeetCode</a>.
  * <p>
  * This is the list for Amazon:
- * [ 1, 100, 102, 155, 160, 167, 186, 199, 20, 200,
- * 204, 206, 21, 23, 235, 239, 242, 48, 49, 5, 78,
- * 8, 89, 98]
+ * [ 1, 5, 8, 20, 21, 23, 48, 49, 78, 89, 98, 100, 102, 155, 160, 167, 186,
+ * 199, 200, 204, 206, 235, 239, 242]
+ * ]
  */
 final class LeetCode {
     private LeetCode() {
     }
+
 
     /**
      * 242. Valid Anagram
@@ -52,6 +57,238 @@ final class LeetCode {
         }
 
         return true;
+    }
+
+    /**
+     * 239. Sliding Window Maximum
+     * Given an array nums, there is a sliding window of size k which is moving
+     * from the very left of the array to the very right. You can only see
+     * the k numbers in the window. Each time the sliding window moves right
+     * by one position.
+     * <p>
+     * Return the max sliding window.
+     *
+     * @param nums array of integers
+     * @param k    sliding window size
+     * @return arary of ints representing the max sliding window
+     */
+    static int[] maxSlidingWindow(int[] nums, int k) {
+        return null;
+    }
+
+    /**
+     * 235. Lowest Common Ancestor of a Binary Search Tree
+     * <p>
+     * Given a binary search tree (BST), find the lowest common ancestor
+     * (LCA)  of two given nodes in the BST.
+     * <p>
+     * According to the definition of LCA on Wikipedia: “The lowest common
+     * ancestor is defined between two nodes p and q as the lowest node in T
+     * that has both p and q as descendants (where we allow a node to be a
+     * descendant of itself).”
+     *
+     * @param root root node of the BST
+     * @param p    first given node
+     * @param q    second given node
+     * @return find the node that is the LCA of p and q
+     */
+    static TreeNode lowestCommonAncestor(TreeNode root, TreeNode p,
+                                         TreeNode q) {
+        return null;
+    }
+
+    /**
+     * 206. Reverse Linked List
+     *
+     * @param head head of the input singly linked list.
+     * @return the reverse of the input linked list
+     */
+    static SinglyLinkedList<Integer> reverseList(SinglyLinkedList<Integer> head) {
+        return head;
+    }
+
+
+    /**
+     * 204. Count Primes
+     * Count the number of prime numbers less than a non-negative number, n.
+     *
+     * @param n a positive integer.
+     * @return number of primes less than n.
+     */
+    static int countPrimes(int n) {
+        return 0;
+    }
+
+    /**
+     * 200. Number of Islands
+     * Given a 2d grid map of '1's (land) and '0's (water), count the number
+     * of islands. An island is surrounded by water and is formed by
+     * connecting adjacent lands horizontally or vertically. You may assume
+     * all four edges of the grid are all surrounded by water.
+     *
+     * @param grid 2D grid map of 1's and 0's represented by two dimensional
+     *             array of characters.
+     * @return number of islands
+     */
+    static int numIslands(char[][] grid) {
+        return 0;
+    }
+
+    /**
+     * 199. Binary Tree Right Side View
+     * Given a binary tree, imagine yourself standing on the right side of
+     * it, return the values of the nodes you can see ordered from top to
+     * bottom.
+     *
+     * @param root root node of the binary tree
+     * @return linked list containing nodes on the right side of the binary
+     * tree.
+     */
+    static List<Integer> rightSideView(TreeNode root) {
+        if (root == null) return null;
+        List<Integer> nodeList = new ArrayList<>();
+        addRightSideNode(root, nodeList);
+        return nodeList;
+    }
+
+    private static void addRightSideNode(TreeNode node, List<Integer> nodes) {
+        if (node != null) {
+            nodes.add(node.value);
+            addRightSideNode(node.right, nodes);
+        }
+    }
+
+    /**
+     * 167. Two Sum II - Input array is sorted
+     * Given an array of integers that is already sorted in ascending order,
+     * find two numbers such that they add up to a specific target number.
+     * <p>
+     * The function twoSum should return indices of the two numbers such that
+     * they add up to the target, where index1 must be less than index2.
+     *
+     * @param numbers array of integers
+     * @param target  the target sum
+     * @return array of two integers whose sum is target.
+     */
+    static int[] twoSumSorted(int[] numbers, int target) {
+
+        return null;
+    }
+
+    /**
+     * 160. Intersection of Two Linked Lists
+     * <p>
+     * Write a program to find the node at which the intersection of two
+     * singly linked lists begins.
+     * <p>
+     * If the two linked lists have no intersection at all, return null.
+     *
+     * @param headA head of the list 1
+     * @param headB head of the list 2
+     * @return node at which the intersection begins otherwise null.
+     */
+    static List<Integer> getIntersectionNode(List<Integer> headA,
+                                             List<Integer> headB) {
+        return null;
+
+    }
+
+    /**
+     * 155. Min Stack
+     * Design a stack that supports push, pop, top, and retrieving the
+     * minimum element in constant time.
+     * <p>
+     * push(x) -- Push element x onto stack.
+     * pop() -- Removes the element on top of the stack.
+     * top() -- Get the top element.
+     * getMin() -- Retrieve the minimum element in the stack.
+     */
+    static class MinStack {
+
+        /**
+         * initialize your data structure here.
+         */
+        public MinStack() {
+
+        }
+
+        public void push(int x) {
+
+        }
+
+        public void pop() {
+
+        }
+
+        public int top() {
+            return 0;
+
+        }
+
+        public int getMin() {
+            return 0;
+
+        }
+    }
+
+
+    /**
+     * 102. Binary Tree Level Order Traversal
+     * Given a binary tree, return the level order traversal of its nodes'
+     * values. (ie, from left to right, level by level).
+     *
+     * @param root root of the binary tree
+     * @return level order traversal
+     */
+    static List<List<Integer>> levelOrder(TreeNode root) {
+        return null;
+    }
+
+    /**
+     * 100. Same Tree.
+     * Given two binary trees, write a function to check if they are the same
+     * or not.
+     * <p>
+     * Two binary trees are considered the same if they are structurally
+     * identical and the nodes have the same value.
+     * <p>
+     * Brute Force: in-order traverse the two trees and compare until
+     * exhausted (True) or nodes don't match.
+     *
+     * @param p first binary tree
+     * @param q second binary tree
+     * @return if p and q are same otherwise false.
+     */
+    static boolean isSameTree(TreeNode p, TreeNode q) {
+        ArrayList<Integer> pNodes = new ArrayList<>();
+        ArrayList<Integer> qNodes = new ArrayList<>();
+        inorder(p, pNodes);
+        inorder(q, qNodes);
+        return Arrays.equals(pNodes.toArray(), qNodes.toArray());
+    }
+
+    /**
+     * class to represent a binary tree node
+     */
+    static class TreeNode {
+        private TreeNode left;
+        private TreeNode right;
+        private int value;
+
+        TreeNode(int value, TreeNode left, TreeNode right) {
+            this.value = value;
+            this.left = left;
+            this.right = right;
+        }
+
+    }
+
+    private static void inorder(TreeNode node, ArrayList<Integer> nodes) {
+        if (node != null) {
+            nodes.add(node.value);
+            inorder(node.left, nodes);
+            inorder(node.right, nodes);
+        }
     }
 
     /**
