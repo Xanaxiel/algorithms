@@ -4,6 +4,7 @@ import java.util.ArrayDeque;
 import java.util.Deque;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -16,52 +17,84 @@ final class Graphs {
     private Graphs() {
     }
 
+    static <V> Graph<V> graphFromEdges(List<Edge<V>> edges, boolean directed) {
+        Graph<V> graph = new AdjacencyListGraph<>(directed);
+        for (Edge<V> edge : edges) {
+            graph.addEdge(edge);
+        }
+        return graph;
+    }
+
     static <V> Set<V> depthFirstSearch(Graph<V> graph, V start) {
-        DepthFirstSearch<V> dfs = new DepthFirstSearch<>(graph, start);
-        return dfs.search();
+        Search<V> search = new Search<>(graph, start);
+        return search.dfs();
     }
 
-    static <V> Iterable<V> path(Graph<V> graph, V start, V end) {
-        DepthFirstSearch<V> dfs = new DepthFirstSearch<>(graph, start);
-        dfs.search();
-        return dfs.path(end);
+    static <V> Set<V> breadthFirstSearch(Graph<V> graph, V start) {
+        Search<V> search = new Search<>(graph, start);
+        return search.bfs();
+    }
+
+    static <V> Iterable<V> shortestPath(Graph<V> graph, V start, V end) {
+        Search<V> search = new Search<>(graph, start);
+        search.bfs();
+        return search.shortestPath(end);
     }
 
 
-    private static class DepthFirstSearch<V> {
+    private static class Search<V> {
 
         private Graph<V> graph;
         private V start;
         private Set<V> marked;
         private Map<V, V> fromEdgeMap;
 
-        DepthFirstSearch(Graph<V> graph, V start) {
+        Search(Graph<V> graph, V start) {
             this.graph = graph;
             this.start = start;
-            marked = new HashSet<>();
-            fromEdgeMap = new HashMap<>();
         }
 
-        private Set<V> search() {
-            search(start);
+        private Set<V> dfs() {
+            marked = new HashSet<>();
+            fromEdgeMap = new HashMap<>();
+            dfs(start);
             return marked;
         }
 
-        private void search(V vertex) {
+        private void dfs(V vertex) {
             marked.add(vertex);
             for (V v : graph.adjacentVertices(vertex)) {
                 if (!marked.contains(v)) {
                     fromEdgeMap.put(v, vertex);
-                    search(v);
+                    dfs(v);
                 }
             }
+        }
+
+        private Set<V> bfs() {
+            marked = new HashSet<>();
+            fromEdgeMap = new HashMap<>();
+            Deque<V> queue = new ArrayDeque<>();
+            marked.add(start);
+            queue.add(start);
+            while (!queue.isEmpty()) {
+                V u = queue.remove();
+                for (V v : graph.adjacentVertices(u)) {
+                    if (!marked.contains(v)) {
+                        fromEdgeMap.put(v, u);
+                        marked.add(v);
+                        queue.add(v);
+                    }
+                }
+            }
+            return marked;
         }
 
         private boolean hasPathTo(V end) {
             return marked.contains(end);
         }
 
-        private Iterable<V> path(V end) {
+        private Iterable<V> shortestPath(V end) {
             if (!hasPathTo(end)) return null;
             Deque<V> path = new ArrayDeque<>();
             for (V v = end; v != start; v = fromEdgeMap.get(v)) {
@@ -71,6 +104,4 @@ final class Graphs {
             return path;
         }
     }
-
-
 }

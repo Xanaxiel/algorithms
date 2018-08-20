@@ -55,16 +55,26 @@ public class AdjacencyListGraph<V> implements Graph<V> {
 
     @Override
     public void addVertex(V vertex) {
-        vertices.put(vertex, new HashSet<>());
-        numVertices++;
+        if (!vertices.containsKey(vertex)) {
+            vertices.put(vertex, new HashSet<>());
+            numVertices++;
+        }
     }
 
     @Override
     public void addEdge(Edge<V> edge) {
-        vertices.get(edge.getPredecessor()).add(edge);
+        V u = edge.getPredecessor();
+        V v = edge.getSuccessor();
+
+        addVertex(u);
+        addVertex(v);
+
+        vertices.get(u).add(edge);
+
         if (!directed) {
-            vertices.get(edge.getSuccessor()).add(edge);
+            vertices.get(v).add(edge);
         }
+
         numEdges++;
     }
 
