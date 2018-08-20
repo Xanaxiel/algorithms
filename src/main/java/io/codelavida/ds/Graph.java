@@ -8,6 +8,9 @@ import java.util.Set;
  * A graph is a pair of sets (V, E), where V is a set of vertices and E is a set
  * of edges where each edge is a pair of vertices that represents a connection
  * between the pair of vertices.
+ * <p>
+ * A graph can be directed or undirected, based on whether the edges are
+ * directed or undirected.
  *
  * @param <V> Node parameter type
  * @author Rabi Panda
@@ -76,4 +79,17 @@ public interface Graph<V> {
      */
     void removeEdge(Edge<V> edge);
 
+    /**
+     * Return the number of vertices in the graph
+     *
+     * @return integer representing the number of vertices.
+     */
+    int numVertices();
+
+    /**
+     * Return the number of edges in the graph
+     *
+     * @return integer representing the number of edges.
+     */
+    int numEdges();
 }
