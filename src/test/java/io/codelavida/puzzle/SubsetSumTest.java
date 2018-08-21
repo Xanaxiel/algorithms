@@ -15,9 +15,15 @@ public class SubsetSumTest {
     }
 
     @Test
+    public void testIsSubsetSumRecursive() {
+        int[] arr = {3, 34, 4, 12, 5, 2};
+        assertTrue(isSubsetSumRecursive(arr, 17));
+    }
+
+    @Test
     public void testIsSubsetSum() {
         int[] arr = {3, 34, 4, 12, 5, 2};
-        assertTrue(isSubsetSum(arr, 6, 17));
+        assertTrue(isSubsetSum(arr, 17));
     }
 
 }
