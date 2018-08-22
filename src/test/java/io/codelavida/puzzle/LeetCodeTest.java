@@ -27,7 +27,7 @@ public class LeetCodeTest {
 
     @Test
     public void testTwoSum() {
-        int[] nums = new int[]{21, 2, 17, 11, 15};
+        int[] nums = {21, 2, 17, 11, 15};
 
         assertThat(LeetCode.twoSum(nums, 19)).isEqualTo(new int[]{1, 2});
         assertThat(LeetCode.twoSum(nums, 10)).isEqualTo(new int[]{-1, -1});
@@ -35,12 +35,17 @@ public class LeetCodeTest {
 
     @Test
     public void testTwoSumSorted() {
-        int[] nums = new int[]{2, 7, 11, 15, 17, 20};
+        int[] nums = {2, 7, 11, 15, 17, 20};
 
         assertThat(LeetCode.twoSumSorted(nums, 13)).isEqualTo(new int[]{0, 2});
         assertThat(LeetCode.twoSumSorted(nums, 10)).isEqualTo(new int[]{-1, -1});
     }
 
+    @Test
+    public void testMaxProfit() {
+        int[] prices = {10, 11, 9, 12, 7, 10, 11};
+        assertThat(LeetCode.maxProfit(prices)).isEqualTo(4);
+    }
 
     @Test
     public void testIsAnagram() {
