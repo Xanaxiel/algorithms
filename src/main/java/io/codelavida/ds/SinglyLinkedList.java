@@ -99,7 +99,7 @@ public class SinglyLinkedList<E> implements List<E> {
 
     @Override
     public boolean retainAll(Collection<?> c) {
-       return false;
+        return false;
     }
 
     @Override
@@ -118,7 +118,7 @@ public class SinglyLinkedList<E> implements List<E> {
         checkIndex(index);
         int i = index;
         Node<E> ref = head;
-        while (ref.next != null && i-- >= 0) {
+        while (ref.next != null && i-- > 0) {
             ref = ref.next;
         }
         return ref.value;
@@ -203,6 +203,26 @@ public class SinglyLinkedList<E> implements List<E> {
         }
         return j;
     }
+
+    /**
+     * Reverses the list and returns the reference to the head of the list.
+     */
+    public void reverse() {
+        if (isEmpty())
+            return;
+        reverse(head, head.next);
+    }
+
+    private void reverse(Node<E> prev, Node<E> curr) {
+        if (curr == null) {
+            head = prev;
+            return;
+        }
+        Node<E> next = curr.next;
+        curr.next = prev;
+        reverse(curr, next);
+    }
+
 
     @Override
     public Iterator<E> iterator() {

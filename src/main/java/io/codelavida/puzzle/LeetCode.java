@@ -5,8 +5,10 @@ import io.codelavida.ds.SinglyLinkedList;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 /**
  * Solutions to problems on <a href=https://leetcode.com>LeetCode</a>.
@@ -70,7 +72,7 @@ final class LeetCode {
      *
      * @param nums array of integers
      * @param k    sliding window size
-     * @return arary of ints representing the max sliding window
+     * @return array of ints representing the max sliding window
      */
     static int[] maxSlidingWindow(int[] nums, int k) {
         return null;
@@ -86,6 +88,9 @@ final class LeetCode {
      * ancestor is defined between two nodes p and q as the lowest node in T
      * that has both p and q as descendants (where we allow a node to be a
      * descendant of itself).”
+     * <p>
+     * if p < root and q > root then root is the LCA. otherwise we will
+     * verify if both p and q are less than or greater than root.
      *
      * @param root root node of the BST
      * @param p    first given node
@@ -94,17 +99,43 @@ final class LeetCode {
      */
     static TreeNode lowestCommonAncestor(TreeNode root, TreeNode p,
                                          TreeNode q) {
-        return null;
+
+        TreeNode node;
+
+        if (root.value == p.value) {
+            return p;
+        } else if (root.value == q.value) {
+            return q;
+        }
+
+        if (root.value > p.value) {
+            if (root.value < q.value) {
+                node = root;
+            } else {
+                node = lowestCommonAncestor(root.left, p, q);
+            }
+
+        } else {
+            if (root.value > q.value) {
+                node = root;
+            } else {
+                node = lowestCommonAncestor(root.right, p, q);
+            }
+        }
+
+
+        return node;
     }
 
     /**
      * 206. Reverse Linked List
      *
-     * @param head head of the input singly linked list.
+     * @param list head of the input singly linked list.
      * @return the reverse of the input linked list
      */
-    static SinglyLinkedList<Integer> reverseList(SinglyLinkedList<Integer> head) {
-        return head;
+    static SinglyLinkedList<Integer> reverseList(SinglyLinkedList<Integer> list) {
+        list.reverse();
+        return list;
     }
 
 
@@ -172,8 +203,27 @@ final class LeetCode {
      */
     static int[] twoSumSorted(int[] numbers, int target) {
 
-        return null;
+        int[] indices = new int[2];
+
+        Arrays.fill(indices, -1);
+
+        int i = 0, j = numbers.length - 1;
+
+        while (i <= j) {
+            if (numbers[i] + numbers[j] == target) {
+                indices[0] = i;
+                indices[1] = j;
+                break;
+            } else if (numbers[i] + numbers[j] < target) {
+                i++;
+            } else {
+                j--;
+            }
+        }
+
+        return indices;
     }
+
 
     /**
      * 160. Intersection of Two Linked Lists
@@ -892,12 +942,66 @@ final class LeetCode {
      * <p>
      * Given a string s, find the longest palindromic substring in s. You may
      * assume that the maximum length of s is 1000.
+     * <p>
+     * Let's find how many substrings are there for a given string of length n.
+     * For example
+     * "ab" has 3, "ab", "a", "b"
+     * "abc" has 6, "abc", "ab", "a", "bc", "b", "c"
+     * "abcd" has 10, "abcd", "abc", "ab", "a", "bcd", "bc", "b", "cd", "c",
+     * "d"
+     * For string length n the number of possible substrings are (n*(n+1))/2
+     * <p>
+     * The brute force approach will check O(n^2) for palindrome, in total
+     * the runtime is O(n^3).
+     * <p>
+     * Given a substring, if the first and last characters are not same, then
+     * it is not a palindrome. Otherwise the solution depends on the inner
+     * string. So this is a subproblem. We will solve many subproblems
+     * repeatedly. To optimise, we cache the results of the subproblems in
+     * two dimensional boolean array cache. Some base cases follow:
+     * <p>
+     * cache[i][i]   = true
+     * cache[i][i+1] = s.charAt(i) == s.charAt(i+1)
+     * cache[i][j] = cache[i+1][j-1] && s.charAt(i) == s.charAt(j)
      *
      * @param s input string
      * @return longest substring in s that is palindromic
      */
     static String longestPalindrome(String s) {
-        return null;
+        if (s == null || s.length() == 0) {
+            return s;
+        }
+
+        int startIndex = 0;
+        int length = 1;
+
+        boolean[][] cache = new boolean[s.length()][s.length()];
+
+        for (int i = 0; i < s.length(); i++) {
+            cache[i][i] = true;
+        }
+
+        for (int i = 0; i < s.length() - 1; i++) {
+            if (s.charAt(i) == s.charAt(i + 1)) {
+                cache[i][i + 1] = true;
+                startIndex = i;
+                length = 2;
+            }
+        }
+
+        for (int l = 3; l <= s.length(); l++) {
+            for (int i = 0; i < s.length() - l + 1; i++) {
+                int j = i + l - 1;
+                if (s.charAt(i) == s.charAt(j)
+                        && cache[i + 1][j - 1]) {
+                    cache[i][j] = true;
+                    startIndex = i;
+                    length = l;
+                }
+            }
+        }
+
+        return s.substring(startIndex, startIndex + length);
     }
 
     /**
@@ -921,14 +1025,30 @@ final class LeetCode {
      * <p>
      * Given a string, find the length of the longest substring without
      * repeating characters.
+     * <p>
+     * Subproblem:
+     * for array of length n, the longest substring is
+     * length(s.substring(0,n-1)) + [1 or 0]
      *
      * @param s input string
      * @return integer representing length of the longest substring.
      */
     static int lengthOfLongestSubstring(String s) {
-
-        return 0;
+        Set<Character> set = new HashSet<>();
+        int n = s.length(), ans = 0, i = 0, j = 0;
+        while (i < n && j < n) {
+            if (!set.contains(s.charAt(j))) {
+                set.add(s.charAt(j));
+                j = j + 1;
+                ans = Math.max(ans, j - i);
+            } else {
+                set.remove(s.charAt(i));
+                i = i + 1;
+            }
+        }
+        return ans;
     }
+
 
     /**
      * 2. Add Two Numbers
@@ -971,6 +1091,7 @@ final class LeetCode {
         }
 
         int[] indices = new int[2];
+        Arrays.fill(indices, -1);
 
         Map<Integer, Integer> numsMap = new HashMap<>(nums.length);
 
