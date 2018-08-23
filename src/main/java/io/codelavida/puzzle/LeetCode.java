@@ -22,6 +22,33 @@ final class LeetCode {
     private LeetCode() {
     }
 
+    /**
+     * 746. Min Cost Climbing Stairs.
+     * On a staircase, the i-th step has some non-negative cost cost[i]
+     * assigned (0 indexed).
+     * <p>
+     * Once you pay the cost, you can either climb one or two steps. You need
+     * to find minimum cost to reach the top of the floor, and you can either
+     * start from the step with index 0, or the step with index 1.
+     * <p>
+     * Dynamic programming:
+     * f(i) = cost[i] + min(f(i) + f(i+1))
+     *
+     * @param cost array of integers representing costs associated with each
+     *             climb.
+     * @return minimum cost of climbing the stairs.
+     */
+    static int minCostClimbingStairs(int[] cost) {
+        int c1 = cost[0], c2 = cost[1];
+        int cur;
+        for (int i = 2; i < cost.length; i++) {
+            cur = cost[i] + Math.min(c1, c2);
+            c1 = c2;
+            c2 = cur;
+        }
+
+        return Math.min(c1, c2);
+    }
 
     /**
      * 242. Valid Anagram
@@ -185,7 +212,11 @@ final class LeetCode {
     private static void addRightSideNode(TreeNode node, List<Integer> nodes) {
         if (node != null) {
             nodes.add(node.value);
-            addRightSideNode(node.right, nodes);
+            if (node.right != null) {
+                addRightSideNode(node.right, nodes);
+            } else {
+                addRightSideNode(node.left, nodes);
+            }
         }
     }
 
@@ -255,28 +286,41 @@ final class LeetCode {
      */
     static class MinStack {
 
-        /**
-         * initialize your data structure here.
-         */
-        public MinStack() {
+        private int[] stack = new int[10];
+        private int[] minStack = new int[10];
 
+        private int top = -1;
+
+        int size() {
+            return top + 1;
+        }
+
+        boolean isEmpty() {
+            return size() == 0;
         }
 
         public void push(int x) {
-
+            stack[top] = x;
+            if (top > 0 && minStack[top - 1] < x) {
+                minStack[top] = x;
+            } else {
+                minStack[top] = minStack[top - 1];
+            }
         }
 
-        public void pop() {
-
+        public int pop() {
+            int p = stack[top];
+            top--;
+            return p;
         }
 
         public int top() {
-            return 0;
+            return stack[top];
 
         }
 
         public int getMin() {
-            return 0;
+            return minStack[top];
 
         }
     }
@@ -369,6 +413,93 @@ final class LeetCode {
             inorder(node.left, nodes);
             inorder(node.right, nodes);
         }
+    }
+
+    /**
+     * 72. Edit Distance
+     * Given two words word1 and word2, find the minimum number of operations
+     * required to convert word1 to word2.
+     * <p>
+     * You have the following 3 operations permitted on a word:
+     * <pre>
+     *     Insert a character
+     *     Delete a character
+     *     Replace a character
+     * </pre>
+     *
+     * <pre>
+     * Solution is to determine cost(m,n) where m and n are lengths of word1
+     * and word2.
+     * base cases:
+     *   cost(i, 0) = i
+     *   cost(0, j) = j
+     *
+     * sub problems
+     *   cost(i, j) = {
+     *       word1[i] == word2[j]  = cost(i-1, j-1)
+     *       word1[i] != word2[j]  = 1 +
+     *                      min(cost(i-1, j-1), cost(i-1, j), cost(i, j-1))
+     *   }
+     * </pre>
+     *
+     * @param word1 first word
+     * @param word2 second word
+     * @return edit distance between word1 and word2
+     */
+    static int minDistance(String word1, String word2) {
+        int m = word1.length();
+        int n = word2.length();
+        int[][] memo = new int[m + 1][n + 1];
+        for (int i = 0; i < m; i++) {
+            memo[i][0] = i;
+        }
+        for (int j = 0; j < n; j++) {
+            memo[0][j] = j;
+        }
+
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < n; j++) {
+                if (word1.charAt(i) == word2.charAt(j)) {
+                    memo[i + 1][j + 1] = memo[i][j];
+                } else {
+                    int a = memo[i][j];
+                    int b = memo[i + 1][j];
+                    int c = memo[i][j + 1];
+                    memo[i + 1][j + 1] = 1 + Math.min(Math.min(a, b), c);
+                }
+            }
+        }
+        return memo[m][n];
+    }
+
+    /**
+     * 70. Climbing Stairs
+     * You are climbing a stair case. It takes n steps to reach to the top.
+     * <p>
+     * Each time you can either climb 1 or 2 steps. In how many distinct ways
+     * can you climb to the top?
+     * <p>
+     * Note: Given n will be a positive integer.
+     *
+     * @param n positive integer denoting number of stairs.
+     * @return number of ways to climb the steps
+     */
+    static int climbStairs(int n) {
+        if (n < 0) {
+            return 0;
+        }
+
+        int n1 = 0, n2 = 1;
+        int i = 0;
+        int numWays = 0;
+
+        while (i++ < n) {
+            numWays = n1 + n2;
+            n1 = n2;
+            n2 = numWays;
+        }
+
+        return numWays;
     }
 
     /**

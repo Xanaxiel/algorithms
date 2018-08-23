@@ -9,6 +9,7 @@ import static io.codelavida.puzzle.LeetCode.TreeNode;
 import static io.codelavida.puzzle.LeetCode.isSameTree;
 import static io.codelavida.puzzle.LeetCode.longestPalindrome;
 import static io.codelavida.puzzle.LeetCode.lowestCommonAncestor;
+import static io.codelavida.puzzle.LeetCode.minDistance;
 
 
 public class LeetCodeTest {
@@ -56,6 +57,20 @@ public class LeetCodeTest {
     @Test(expected = IllegalArgumentException.class)
     public void testIsAnagramNullArgument() {
         LeetCode.isAnagram(null, "");
+    }
+
+    @Test
+    public void testMinCostClimbingStairs() {
+        int[] cost = {10, 15, 20};
+        assertThat(LeetCode.minCostClimbingStairs(cost)).isEqualTo(15);
+        int[] cost2 = {1, 100, 1, 1, 1, 100, 1, 1, 100, 1};
+        assertThat(LeetCode.minCostClimbingStairs(cost2)).isEqualTo(6);
+    }
+
+    @Test
+    public void testClimbStairs() {
+        assertThat(LeetCode.climbStairs(4)).isEqualTo(5);
+        assertThat(LeetCode.climbStairs(5)).isEqualTo(8);
     }
 
     @Test
@@ -117,6 +132,12 @@ public class LeetCodeTest {
         assertThat(list.get(0)).isEqualTo(30);
         assertThat(list.get(1)).isEqualTo(20);
         assertThat(list.get(2)).isEqualTo(10);
+    }
+
+    @Test
+    public void testMinEditDistance(){
+        assertThat(minDistance("horse", "ros")).isEqualTo(3);
+        assertThat(minDistance("intention", "execution")).isEqualTo(5);
     }
 
 }
