@@ -1,5 +1,7 @@
 package io.codelavida.puzzle;
 
+import java.util.Arrays;
+
 public class LongestIncSubsequence implements Problem {
     @Override
     public String getName() {
@@ -34,13 +36,58 @@ public class LongestIncSubsequence implements Problem {
                 "on the original ordering of the array.";
     }
 
-    static int longestIncSubseq(int[] arr) {
-        return longestIncSubseq(arr, 0, arr.length - 1);
+    /**
+     * if we know the length of the LIS upto ithi^{th}i​th​​ index, we can
+     * figure out the length of the LIS possible by including the (i+1)th
+     * element based on the elements with indices j such that 0 ≤ j ≤ (i+1).
+     * <p>
+     * memo[i] represents the length of the longest increasing subsequence
+     * possible considering the array elements up to the ith​​ index only, by
+     * necessarily including the i​th​​ element.
+     * <p>
+     * dp[i] = max(dp[j])+1,∀0≤j<i
+     *
+     * @param nums input integers
+     * @return max length of the increasing sub sequence.
+     */
+    static int lengthLIS(int[] nums) {
+        if (nums.length == 0) {
+            return 0;
+        }
+        int[] memo = new int[nums.length];
+        memo[0] = 1;
+        int maxans = 1;
+        for (int i = 1; i < nums.length; i++) {
+            int maxval = 0;
+            for (int j = 0; j < i; j++) {
+                if (nums[i] > nums[j]) {
+                    maxval = Math.max(maxval, memo[j]);
+                }
+            }
+            memo[i] = maxval + 1;
+            maxans = Math.max(maxans, memo[i]);
+        }
+        return maxans;
     }
 
-    private static int longestIncSubseq(int[] arr, int low, int high) {
+    static int lengthLISBinarySearch(int[] nums) {
+        if (nums.length == 0) {
+            return 0;
+        }
+        int[] memo = new int[nums.length];
 
-        return 0;
+        int length = 0;
+        for (int num : nums) {
+            int i = Arrays.binarySearch(memo, 0, length, num);
+            if (i < 0) {
+                i = -(i + 1);
+            }
+            memo[i] = num;
+            if (i == length) {
+                length++;
+            }
+        }
+
+        return length;
     }
-
 }
