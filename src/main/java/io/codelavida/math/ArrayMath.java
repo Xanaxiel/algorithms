@@ -39,7 +39,7 @@ public final class ArrayMath {
         return sum(nums, 0, nums.length - 1);
     }
 
-    public static double avg(double[] nums) {
+    public static double mean(double[] nums) {
         return (sum(nums) * 1.0) / nums.length;
     }
 
@@ -114,4 +114,21 @@ public final class ArrayMath {
 
     }
 
+    public static double[] pow(double[] input, double n) {
+        double[] result = Arrays.copyOf(input, input.length);
+        for (int i = 0; i < input.length; i++) {
+            result[i] = Math.pow(input[i], n);
+        }
+
+        return result;
+    }
+
+    public static double[] abs(double[] input) {
+        double[] result = Arrays.copyOf(input, input.length);
+        for (int i = 0; i < input.length; i++) {
+            result[i] = Math.abs(input[i]);
+        }
+
+        return result;
+    }
 }
