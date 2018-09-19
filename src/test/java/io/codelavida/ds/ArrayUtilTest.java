@@ -41,10 +41,8 @@ public class ArrayUtilTest {
 
     @Test
     public void testBinarySearch() {
-        int[] data = getRandomArray(50);
-        insertonSort(data);
-        assertEquals(34, binarySearch(data, data[34]));
-        assertEquals(13, binarySearch(data, data[13]));
+        int[] data = {10, 12, 17, 23, 28, 34};
+        assertEquals(3, binarySearch(data, 23));
         assertEquals(-1, binarySearch(data, 120));
     }
 
