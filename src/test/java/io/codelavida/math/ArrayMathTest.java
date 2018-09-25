@@ -1,5 +1,6 @@
 package io.codelavida.math;
 
+import io.codelavida.math.util.ArrayMath;
 import org.junit.Test;
 
 import static org.junit.Assert.*;

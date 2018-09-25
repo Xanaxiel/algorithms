@@ -1,4 +1,4 @@
-package io.codelavida.math;
+package io.codelavida.math.util;
 
 import java.util.Arrays;
 import java.util.Random;
